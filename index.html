@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SynchroLearn — Real Tutors. Real Learning.</title>
+  <meta name="description" content="SynchroLearn matches every learner with the right human tutor. 14+ years of excellence, 1000+ learners, real human tutors.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0d2b4d;
+      --blue: #2563eb;
+      --sky: #4ba9f5;
+      --sky-light: #e8f4fd;
+      --gold: #f2c43e;
+      --orange: #f97316;
+      --green: #22c55e;
+      --white: #ffffff;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 14px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--navy);
+      line-height: 1.6;
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+    .reveal-d4 { transition-delay: 0.32s; }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 48px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .nav-logo {
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.3px;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .nav-login {
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-decoration: none;
+      padding: 8px 20px;
+      border: 1.5px solid var(--blue);
+      border-radius: 50px;
+      transition: all 0.2s;
+    }
+    .nav-login:hover { background: var(--sky-light); }
+    .nav-cta {
+      background: var(--blue);
+      color: var(--white);
+      padding: 9px 22px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: all 0.22s;
+    }
+    .nav-cta:hover { background: #1d4ed8; transform: translateY(-1px); }
+
+    /* Mobile hamburger */
+    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--navy);
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    @media (max-width: 768px) {
+      nav { padding: 14px 24px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+      .nav-actions .nav-login { display: none; }
+    }
+
+    /* Role Modal */
+    .role-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(10,40,70,0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+    }
+    .role-modal.visible { display: flex; }
+    .role-modal-card {
+      background: var(--white);
+      border-radius: 28px;
+      padding: 52px 56px;
+      max-width: 520px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.18);
+    }
+    .role-modal-owl {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      background: var(--sky-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+    }
+    .role-modal h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .role-modal > .role-modal-card > p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.65;
+    }
+    .role-choices { display: flex; gap: 14px; }
+    .role-choice {
+      flex: 1;
+      padding: 22px 16px;
+      border-radius: 18px;
+      border: 2px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.22s;
+      background: var(--white);
+    }
+    .role-choice:hover { transform: translateY(-3px); }
+    .role-choice.learner:hover { border-color: var(--sky); box-shadow: 0 8px 24px rgba(75,169,245,0.14); }
+    .role-choice.teacher:hover { border-color: var(--gold); box-shadow: 0 8px 24px rgba(242,196,62,0.14); }
+    .role-choice.highlighted { border-color: var(--orange); box-shadow: 0 8px 24px rgba(249,115,22,0.14); }
+    .role-choice-icon { font-size: 2rem; }
+    .role-choice-label { font-family: 'Fredoka', sans-serif; font-size: 1rem; font-weight: 600; color: var(--navy); }
+    .role-choice-sub { font-size: 0.75rem; color: var(--muted); }
+    .role-skip {
+      display: block;
+      margin-top: 20px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .role-skip:hover { color: var(--blue); }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 140px 48px 80px;
+      background: linear-gradient(150deg, var(--sky-light) 0%, #D6EEFB 50%, var(--sky-light) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 640px;
+      height: 640px;
+      background: radial-gradient(circle, rgba(75,169,245,0.1) 0%, transparent 70%);
+      top: -120px;
+      right: -80px;
+      pointer-events: none;
+    }
+    .hero-left { padding-right: 56px; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(75,169,245,0.18);
+      backdrop-filter: blur(6px);
+      color: var(--navy);
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 22px;
+      letter-spacing: 0.3px;
+    }
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.7);} }
+    .hero h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.07;
+      margin-bottom: 18px;
+      letter-spacing: -0.3px;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 30px;
+      max-width: 400px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+      padding: 13px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.925rem;
+      text-decoration: none;
+      transition: all 0.22s;
+      box-shadow: 0 4px 16px rgba(37,99,235,0.34);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); }
+    .btn-secondary {
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 0.925rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 13px 28px;
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      transition: all 0.22s;
+    }
+    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); background: var(--sky-light); }
+    .hero-right { display: flex; justify-content: center; align-items: center; position: relative; }
+    .hero-owl-wrap {
+      position: relative;
+      width: 320px;
+      height: 320px;
+    }
+    .hero-owl-glow {
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(circle, rgba(75,169,245,0.2) 0%, transparent 68%);
+      border-radius: 50%;
+      animation: glow-pulse 4s ease-in-out infinite;
+    }
+    @keyframes glow-pulse { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(1.04);opacity:0.6;} }
+    .hero-owl {
+      width: 320px;
+      height: 320px;
+      background: var(--sky-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+      box-shadow: 0 16px 48px rgba(7,63,102,0.12);
+      animation: owl-float 3.2s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes owl-float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-12px);} }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding: 120px 32px 60px; }
+      .hero-left { padding-right: 0; }
+      .hero-sub { margin: 0 auto 28px; }
+      .hero-actions { justify-content: center; }
+      .hero-right { margin-top: 32px; }
+      .hero-owl-wrap { width: 240px; height: 240px; }
+      .hero-owl { width: 240px; height: 240px; font-size: 5rem; }
+      .hero h1 { font-size: 2.4rem; }
+    }
+
+    /* Trust bar */
+    .trust-bar {
+      background: var(--white);
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.83rem; color: var(--muted); font-weight: 500; white-space: nowrap; }
+
+    /* About Veena */
+    .about-founder {
+      padding: 80px 24px;
+      background: #f7fafc;
+    }
+    .about-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .about-inner img {
+      width: 200px;
+      height: auto;
+      border-radius: 16px;
+      display: block;
+      margin: 0 auto 28px;
+    }
+    .founder-name {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .founder-title {
+      font-size: 0.82rem;
+      color: var(--blue);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .founder-bio {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    /* Counter */
+    .counter-section {
+      padding: 56px 48px;
+      background: linear-gradient(135deg, var(--navy), #0a1f3a);
+      text-align: center;
+    }
+    .counter-inner { max-width: 800px; margin: 0 auto; }
+    .counter-grid { display: flex; justify-content: center; gap: 56px; flex-wrap: wrap; }
+    .counter-item { text-align: center; }
+    .counter-number {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+    }
+    .counter-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 5px; font-weight: 500; }
+
+    /* How it Works */
+    .how {
+      padding: 96px 48px;
+      background: var(--white);
+    }
+    .how-inner { max-width: 1060px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .section-heading {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+    .section-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 52px;
+    }
+    .how-inner .section-sub { margin: 0 auto 52px; }
+    .steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .step-card {
+      background: #f7fafc;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      text-align: center;
+      transition: all 0.28s cubic-bezier(0.22,1,0.36,1);
+    }
+    .step-card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+    .step-num {
+      width: 48px;
+      height: 48px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      margin: 0 auto 16px;
+    }
+    .step-card h3 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .step-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+    @media (max-width: 768px) {
+      .steps-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Services / For Students */
+    .services {
+      padding: 96px 48px;
+      background: #f7fafc;
+    }
+    .services-inner { max-width: 1060px; margin: 0 auto; }
+    .services-header { text-align: center; margin-bottom: 52px; }
+    .services-header .section-label { margin-bottom: 12px; }
+    .services-header h2 { margin-bottom: 14px; }
+    .services-header p { font-size: 0.975rem; color: var(--muted); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+    .services-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 20px;
+      text-align: center;
+      transition: all 0.25s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); border-color: rgba(75,169,245,0.2); }
+    .service-icon { font-size: 2.2rem; margin-bottom: 12px; display: block; }
+    .service-card h4 { font-family: 'Fredoka', sans-serif; font-size: 0.875rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+    .service-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 96px 48px;
+      background: var(--white);
+      overflow: hidden;
+    }
+    .testimonials-inner { max-width: 1060px; margin: 0 auto; }
+    .testimonials-header { text-align: center; margin-bottom: 40px; }
+    .testimonials-header .section-label { margin-bottom: 12px; }
+    .testimonials-header h2 { margin-bottom: 14px; }
+    .testimonials-header p { font-size: 0.975rem; color: var(--muted); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    .testi-carousel-wrap { position: relative; }
+    .testi-carousel {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 16px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .testi-carousel::-webkit-scrollbar { display: none; }
+    .testi-card {
+      flex: 0 0 320px;
+      scroll-snap-align: start;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 2.5px solid var(--sky);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.25s;
+    }
+    .testi-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .testi-stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 1px; }
+    .testi-quote { font-size: 0.82rem; color: var(--muted); line-height: 1.75; flex: 1; font-style: italic; }
+    .testi-author { display: flex; flex-direction: column; gap: 2px; }
+    .testi-name { font-family: 'Fredoka', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--navy); }
+    .testi-role { font-size: 0.72rem; color: var(--muted); font-weight: 500; }
+
+    .testi-arrows { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
+    .testi-arrow {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--blue);
+      user-select: none;
+    }
+    .testi-arrow:hover { background: var(--sky-light); border-color: var(--sky); transform: scale(1.05); }
+    .testi-arrow svg { width: 18px; height: 18px; }
+
+    .testi-pagination { display: flex; justify-content: center; gap: 6px; margin-top: 14px; }
+    .testi-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(75,169,245,0.25);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .testi-dot.active { background: var(--sky); width: 20px; border-radius: 3px; }
+
+    /* Subjects / Word cycler */
+    .subjects {
+      padding: 96px 48px;
+      background: #f7fafc;
+      text-align: center;
+    }
+    .subjects-inner { max-width: 800px; margin: 0 auto; }
+    .subjects .section-label { margin-bottom: 12px; }
+    .subjects h2 { margin-bottom: 14px; }
+    .subjects p { font-size: 0.975rem; color: var(--muted); line-height: 1.7; margin-bottom: 32px; }
+    .word-cycler {
+      display: inline-block;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--blue);
+      transition: opacity 0.35s ease;
+      min-width: 300px;
+    }
+
+    /* Why Humans */
+    .why-humans {
+      padding: 96px 48px;
+      background: var(--navy);
+    }
+    .why-inner { max-width: 1060px; margin: 0 auto; }
+    .why-header { text-align: center; margin-bottom: 52px; }
+    .why-header .section-label { color: rgba(255,255,255,0.3); }
+    .why-header h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .why-header p { font-size: 0.975rem; color: rgba(255,255,255,0.4); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+    .why-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .why-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 22px 18px;
+      transition: all 0.25s;
+    }
+    .why-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+    .why-card-icon { font-size: 1.8rem; margin-bottom: 10px; display: block; }
+    .why-card h4 { font-family: 'Fredoka', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--white); margin-bottom: 5px; }
+    .why-card p { font-size: 0.78rem; color: rgba(255,255,255,0.4); line-height: 1.6; }
+    @media (max-width: 900px) {
+      .why-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 480px) {
+      .why-grid { grid-template-columns: 1fr; }
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 96px 48px;
+      background: linear-gradient(140deg, var(--sky-light), #d0ebfb);
+      text-align: center;
+    }
+    .cta-inner { max-width: 560px; margin: 0 auto; }
+    .cta-section h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .cta-section > .cta-inner > p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
+    .cta-btn {
+      background: var(--blue);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.22s;
+      box-shadow: 0 4px 16px rgba(37,99,235,0.34);
+      display: inline-block;
+    }
+    .cta-btn:hover { background: #1d4ed8; transform: translateY(-2px); }
+    .cta-trust { margin-top: 20px; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .cta-trust-item { font-size: 0.78rem; color: var(--muted); }
+
+    /* Footer */
+    footer {
+      background: var(--navy);
+      padding: 48px 48px 32px;
+    }
+    .footer-top {
+      max-width: 1060px;
+      margin: 0 auto 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .footer-logo {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .footer-tagline { font-size: 0.8rem; color: rgba(255,255,255,0.3); margin-bottom: 18px; }
+    .footer-col-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { color: rgba(255,255,255,0.38); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-social { display: flex; gap: 12px; align-items: center; margin-top: 18px; }
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-social a:hover { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.9); }
+    .footer-social svg { width: 16px; height: 16px; }
+    .footer-bottom {
+      max-width: 1060px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.2); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 0.75rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.5); }
+    @media (max-width: 768px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .footer-legal { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">SYNCHROLEARN</a>
+  <ul class="nav-links">
+    <li><a href="#services">Our Services</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#why-humans">Why Us</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="login.html" class="nav-login">Sign In</a>
+    <a href="#cta" class="nav-cta">Get Started</a>
+  </div>
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Real human tutors &middot; 14 years
+    </div>
+    <h1>Your Learning Journey Starts Here</h1>
+    <p class="hero-sub">SynchroLearn matches every learner with the right human tutor. After 14 years of running live classes, we're building the platform that scales judgment — not just content.</p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary">Find My Tutor</a>
+      <a href="for-teachers.html" class="btn-secondary">Explore as Teacher</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-owl-wrap">
+      <div class="hero-owl-glow"></div>
+      <div class="hero-owl">🦉</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">✓ 14+ years of excellence</div>
+  <div class="trust-item">✓ 1000+ learners</div>
+  <div class="trust-item">✓ Real human tutors</div>
+</div>
+
+<!-- ABOUT VEENA -->
+<section class="about-founder" id="about">
+  <div class="about-inner reveal">
+    <img src="veena.jpg" alt="Veena Krishnamurthy, Founder SynchroLearn">
+    <div class="founder-name">Veena Krishnamurthy</div>
+    <div class="founder-title">Founder, SynchroLearn</div>
+    <p class="founder-bio">SynchroLearn exists for one reason — to match every learner with the right human tutor. After 14 years of running live classes across multiple platforms, I'm building the platform I always knew was possible. One that scales the judgment of experienced educators, not just content delivery.</p>
+  </div>
+</section>
+
+<!-- COUNTER -->
+<section class="counter-section">
+  <div class="counter-inner">
+    <div class="counter-grid">
+      <div class="counter-item">
+        <div class="counter-number" data-target="1000" data-suffix="+">0</div>
+        <div class="counter-label">Learners</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-number" data-target="14">0</div>
+        <div class="counter-label">Years</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-number" data-target="50" data-suffix="+">0</div>
+        <div class="counter-label">Expert Tutors</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-number" data-target="4.9" data-suffix="/5">0</div>
+        <div class="counter-label">Student Rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how-it-works">
+  <div class="how-inner">
+    <div class="section-label reveal">How It Works</div>
+    <h2 class="section-heading reveal reveal-d1">Three steps to your tutor</h2>
+    <p class="section-sub reveal reveal-d2">Simple, structured, and built around you.</p>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">1</div>
+        <h3>Tell Us Your Goals</h3>
+        <p>Share what you want to learn — we'll match you with the perfect tutor within 24 hours.</p>
+      </div>
+      <div class="step-card reveal reveal-d1">
+        <div class="step-num">2</div>
+        <h3>Meet Your Tutor</h3>
+        <p>Get paired with a dedicated, vetted human tutor who tailors every session to you.</p>
+      </div>
+      <div class="step-card reveal reveal-d2">
+        <div class="step-num">3</div>
+        <h3>Learn &amp; Grow Together</h3>
+        <p>Structured sessions that adapt to your pace. Real progress, measurable results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR STUDENTS / SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-header">
+      <div class="section-label reveal">What Awaits You</div>
+      <h2 class="section-heading reveal reveal-d1">Everything you need to succeed</h2>
+      <p class="reveal reveal-d2">Four pillars of learning, designed for real results.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-icon">📹</span>
+        <h4>Live 1-on-1 Sessions</h4>
+        <p>Face-to-face learning via video call — real-time, no recordings.</p>
+      </div>
+      <div class="service-card reveal reveal-d1">
+        <span class="service-icon">🧠</span>
+        <h4>Personalized Learning Plans</h4>
+        <p>Custom-built curriculum based on your goals, pace, and style.</p>
+      </div>
+      <div class="service-card reveal reveal-d2">
+        <span class="service-icon">📊</span>
+        <h4>Progress Tracking</h4>
+        <p>Regular updates on what's working, what needs focus.</p>
+      </div>
+      <div class="service-card reveal reveal-d3">
+        <span class="service-icon">🎯</span>
+        <h4>Exam-Ready Prep</h4>
+        <p>Structured test prep that builds confidence and skill.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-header">
+      <div class="section-label reveal">Testimonials</div>
+      <h2 class="section-heading reveal reveal-d1">Hear From Our Learners</h2>
+    </div>
+    <div class="testi-carousel-wrap">
+      <div class="testi-carousel" id="testiCarousel">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">My son's math anxiety vanished within weeks. The 1-on-1 attention made all the difference.</div>
+          <div class="testi-author">
+            <div class="testi-name">Meera Patel</div>
+            <div class="testi-role">Parent, Class 6 student</div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">Finally, a platform that treats learning like a relationship, not a transaction. Veena's team actually cares.</div>
+          <div class="testi-author">
+            <div class="testi-name">Arjun Mehta</div>
+            <div class="testi-role">Class 10 student</div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">Grateful for how patient my tutor was. She made physics feel less scary and more like thinking.</div>
+          <div class="testi-author">
+            <div class="testi-name">Sneha Iyer</div>
+            <div class="testi-role">Class 11 student</div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">I went from struggling with statistics to actually enjoying it. My tutor's approach was exactly what I needed.</div>
+          <div class="testi-author">
+            <div class="testi-name">Vikram Desai</div>
+            <div class="testi-role">College student</div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">The structured approach and regular feedback helped me prepare for my exams with actual confidence.</div>
+          <div class="testi-author">
+            <div class="testi-name">Aditi Sharma</div>
+            <div class="testi-role">Class 12 student</div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">Learning feels collaborative now, not like a chore. My tutor makes every session something to look forward to.</div>
+          <div class="testi-author">
+            <div class="testi-name">Rohit Krishnan</div>
+            <div class="testi-role">Class 8 student</div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">Adult learning with a full-time job is hard. SynchroLearn's flexibility made it possible for me to finally upskill.</div>
+          <div class="testi-author">
+            <div class="testi-name">Sunita Rao</div>
+            <div class="testi-role">Working professional</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-arrows">
+        <button class="testi-arrow" id="testiPrev" aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="testi-arrow" id="testiNext" aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="testi-pagination" id="testiPagination"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBJECTS / WORD CYCLER -->
+<section class="subjects" id="subjects">
+  <div class="subjects-inner">
+    <div class="section-label reveal">Subjects</div>
+    <h2 class="section-heading reveal reveal-d1">We Cover Every Subject</h2>
+    <p class="reveal reveal-d2">From core academics to advanced skills — our tutors teach it all.</p>
+    <div class="reveal reveal-d3">
+      <span id="wordCycler" class="word-cycler">Mathematics</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY HUMANS -->
+<section class="why-humans" id="why-humans">
+  <div class="why-inner">
+    <div class="why-header">
+      <div class="section-label reveal">Why Real Tutors?</div>
+      <h2 class="reveal reveal-d1">Why AI will never replace human tutors</h2>
+      <p class="reveal reveal-d2">Eight reasons why the human connection matters.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="why-card-icon">🧠</span>
+        <h4>Critical Thinking</h4>
+        <p>AI can't teach judgment — only experienced tutors can.</p>
+      </div>
+      <div class="why-card reveal reveal-d1">
+        <span class="why-card-icon">🔍</span>
+        <h4>Personalized Feedback</h4>
+        <p>Instant, tailored corrections that AI simply can't replicate.</p>
+      </div>
+      <div class="why-card reveal reveal-d2">
+        <span class="why-card-icon">💡</span>
+        <h4>Curiosity-Driven</h4>
+        <p>Great tutors ignite curiosity, not just answer questions.</p>
+      </div>
+      <div class="why-card reveal reveal-d3">
+        <span class="why-card-icon">🎯</span>
+        <h4>Accountability</h4>
+        <p>A real person who knows your name and follows your progress.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-card-icon">🧗</span>
+        <h4>Motivation &amp; Momentum</h4>
+        <p>Encouragement at the right moments changes everything.</p>
+      </div>
+      <div class="why-card reveal reveal-d1">
+        <span class="why-card-icon">📚</span>
+        <h4>Holistic Growth</h4>
+        <p>Tutors see the whole learner — not just answers on a page.</p>
+      </div>
+      <div class="why-card reveal reveal-d2">
+        <span class="why-card-icon">🤝</span>
+        <h4>Human Connection</h4>
+        <p>Learning thrives with trust, not algorithms.</p>
+      </div>
+      <div class="why-card reveal reveal-d3">
+        <span class="why-card-icon">⚡</span>
+        <h4>Real-Time Pacing</h4>
+        <p>Adjust instantly when something clicks or doesn't.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="cta-inner reveal">
+    <h2>Ready to Meet Your Tutor?</h2>
+    <p>Join 1000+ learners who've found their perfect match.</p>
+    <a href="#services" class="cta-btn">Get Started Free</a>
+    <div class="cta-trust">
+      <div class="cta-trust-item">✓ No credit card required</div>
+      <div class="cta-trust-item">✓ Cancel anytime</div>
+      <div class="cta-trust-item">✓ First session free</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">SYNCHROLEARN</div>
+      <div class="footer-tagline">Real tutors. Real learning. Real results.</div>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/synchrolearn" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/synchrolearn" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/synchrolearn" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Learn</div>
+      <div class="footer-links">
+        <a href="#services">For Students</a>
+        <a href="for-teachers.html">For Teachers</a>
+        <a href="#services">Our Services</a>
+        <a href="#testimonials">Testimonials</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="mailto:hello@synchrolearn.com">Contact</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 SynchroLearn. All rights reserved.</div>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ROLE MODAL -->
+<div class="role-modal" id="roleModal">
+  <div class="role-modal-card">
+    <div class="role-modal-owl">🦉</div>
+    <h2>What brings you here?</h2>
+    <p>Choose your path — we're built for both learners and the tutors who teach them.</p>
+    <div class="role-choices">
+      <a href="index.html" class="role-choice learner">
+        <span class="role-choice-icon">🎓</span>
+        <span class="role-choice-label">I'm a Learner</span>
+        <span class="role-choice-sub">Find my tutor</span>
+      </a>
+      <a href="for-teachers.html" class="role-choice teacher">
+        <span class="role-choice-icon">📚</span>
+        <span class="role-choice-label">I'm a Teacher</span>
+        <span class="role-choice-sub">Join our platform</span>
+      </a>
+    </div>
+    <a href="#" class="role-skip" id="roleSkip">Skip — explore on my own</a>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Navbar scroll behavior
+  var nav = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Scroll reveal
+  var reveals = document.querySelectorAll('.reveal');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(function(el) { obs.observe(el); });
+
+  // Testimonial carousel
+  var carousel = document.getElementById('testiCarousel');
+  var prevBtn = document.getElementById('testiPrev');
+  var nextBtn = document.getElementById('testiNext');
+  var pagination = document.getElementById('testiPagination');
+  var cards = carousel ? carousel.querySelectorAll('.testi-card') : [];
+  var cardsPerPage = 3;
+  var totalPages = Math.ceil(cards.length / cardsPerPage);
+  var currentPage = 0;
+
+  function buildDots() {
+    if (!pagination) return;
+    pagination.innerHTML = '';
+    for (var i = 0; i < totalPages; i++) {
+      var dot = document.createElement('div');
+      dot.className = 'testi-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', function(idx) {
+        return function() { scrollToPage(idx); };
+      }(i));
+      pagination.appendChild(dot);
+    }
+  }
+
+  function scrollToPage(page) {
+    if (!carousel) return;
+    currentPage = page;
+    var cardWidth = cards[0] ? cards[0].offsetWidth + 16 : 336;
+    carousel.scrollTo({ left: page * cardWidth * cardsPerPage, behavior: 'smooth' });
+    updateDots();
+  }
+
+  function updateDots() {
+    if (!pagination) return;
+    var dots = pagination.querySelectorAll('.testi-dot');
+    dots.forEach(function(d, i) {
+      d.classList.toggle('active', i === currentPage);
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function() {
+      scrollToPage(Math.max(0, currentPage - 1));
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function() {
+      scrollToPage(Math.min(totalPages - 1, currentPage + 1));
+    });
+  }
+
+  buildDots();
+
+  // Word cycler cross-fade
+  var words = ['Mathematics','Science','Languages','Coding & AI','Statistics','Reading & Writing','Critical Thinking','Exam Prep','Physics','Chemistry'];
+  var wordIndex = 0;
+  var wordEl = document.getElementById('wordCycler');
+  if (wordEl) {
+    setInterval(function() {
+      var nextIndex = (wordIndex + 1) % words.length;
+      wordEl.style.opacity = '0';
+      setTimeout(function() {
+        wordEl.textContent = words[nextIndex];
+        wordIndex = nextIndex;
+        wordEl.style.opacity = '1';
+      }, 350);
+    }, 2000);
+  }
+
+  // Counter animation
+  var counterSection = document.querySelector('.counter-section');
+  var counterObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var counters = entry.target.querySelectorAll('.counter-number[data-target]');
+        counters.forEach(function(counter) {
+          var target = parseFloat(counter.getAttribute('data-target'));
+          var suffix = counter.getAttribute('data-suffix') || '';
+          var duration = 1500;
+          var start = null;
+          function animate(timestamp) {
+            if (!start) start = timestamp;
+            var progress = Math.min((timestamp - start) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = eased * target;
+            counter.textContent = (target % 1 !== 0 ? current.toFixed(1) : Math.floor(current)) + suffix;
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            }
+          }
+          requestAnimationFrame(animate);
+        });
+        counterObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  if (counterSection) counterObs.observe(counterSection);
+
+  // Role Modal - show on page load
+  var modal = document.getElementById('roleModal');
+  var skip = document.getElementById('roleSkip');
+  if (modal) {
+    modal.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+  if (skip) {
+    skip.onclick = function(e) {
+      e.preventDefault();
+      modal.classList.remove('visible');
+      document.body.style.overflow = '';
+    };
+  }
+  document.onkeydown = function(e) {
+    if (e.key === 'Escape' && modal && modal.classList.contains('visible')) {
+      modal.classList.remove('visible');
+      document.body.style.overflow = '';
+    }
+  };
+})();
+</script>
+
+</body>
+</html>
