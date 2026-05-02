@@ -15,7 +15,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --cream: #F9F7F5;
-      --lime: #D4F05F;
+      --lime: #0082C3;
       --sky: #5CB5F2;
       --teal: #004B8D;
       --golden: #FDB813;
@@ -31,7 +31,7 @@
       --lemon: #F5F0C8;
       --shadow: 0 4px 24px rgba(0,0,0,0.06);
       --shadow-lg: 0 8px 40px rgba(0,0,0,0.10);
-      --shadow-lime: 0 4px 20px rgba(212,240,95,0.4);
+      --shadow-lime: 0 4px 20px rgba(0,130,195,0.35);
       --radius-xs: 16px;
       --radius: 24px;
       --radius-lg: 32px;
@@ -66,10 +66,10 @@
     .nav-logo-text .tagline { font-size: 9px; font-style: italic; color: var(--sky); font-weight: 500; }
     .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
     .nav-links a { color: var(--gray); text-decoration: none; font-size: 15px; font-weight: 500; padding: 8px 16px; border-radius: var(--radius-xs); transition: var(--transition); }
-    .nav-links a:hover { color: var(--navy); background: rgba(212,240,95,0.15); }
+    .nav-links a:hover { color: var(--navy); background: rgba(0,130,195,0.12); }
     .nav-links a.teacher-active {
       color: var(--teal);
-      background: rgba(212,240,95,0.2);
+      background: rgba(0,130,195,0.2);
       position: relative;
     }
     .nav-links a.teacher-active::after {
@@ -85,8 +85,8 @@
     }
     .nav-right { display: flex; align-items: center; gap: 12px; }
     .btn-lime { background: var(--lime); color: var(--navy); padding: 10px 22px; border-radius: 100px; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; transition: var(--transition); display: inline-flex; align-items: center; gap: 6px; box-shadow: var(--shadow-lime); }
-    .btn-lime:hover { background: #c8e050; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(212,240,95,0.5); }
-    .btn-whatsapp-nav { width: 40px; height: 40px; border-radius: 50%; background: rgba(212,240,95,0.15); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+    .btn-lime:hover { background: #0070b0; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,130,195,0.4); }
+    .btn-whatsapp-nav { width: 40px; height: 40px; border-radius: 50%; background: rgba(0,130,195,0.12); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
     .btn-whatsapp-nav:hover { background: var(--lime); transform: translateY(-2px); }
     .btn-whatsapp-nav svg { width: 20px; height: 20px; color: var(--teal); }
     .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
@@ -168,7 +168,7 @@
     .stat-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
     .stat-icon { width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
     .stat-icon svg { width: 24px; height: 24px; color: white; }
-    .stat-icon.lime { background: var(--lime); }
+    .stat-icon.lime { background: var(--sky); }
     .stat-icon.sky { background: var(--sky); }
     .stat-icon.orange { background: var(--orange); }
     .stat-number { font-family: 'Poppins', sans-serif; font-size: 42px; font-weight: 700; color: var(--lime); margin-bottom: 6px; line-height: 1; }
@@ -183,11 +183,11 @@
     .section-header p { font-size: 16px; color: var(--gray); max-width: 500px; margin: 0 auto; }
     .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1060px; margin: 0 auto; }
     .why-card { background: var(--white); border-radius: var(--radius); padding: 32px 28px; text-align: center; box-shadow: var(--shadow); transition: var(--transition); border: 1px solid rgba(0,0,0,0.04); }
-    .why-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(212,240,95,0.4); }
+    .why-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(0,130,195,0.35); }
     .why-icon { width: 64px; height: 64px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
     .why-icon svg { width: 30px; height: 30px; color: white; }
     .why-icon.sky { background: linear-gradient(135deg, var(--sky), var(--teal)); box-shadow: 0 6px 20px rgba(92,181,242,0.35); }
-    .why-icon.lime { background: linear-gradient(135deg, var(--lime), #b8d84a); box-shadow: 0 6px 20px rgba(212,240,95,0.35); }
+    .why-icon.lime { background: linear-gradient(135deg, var(--sky), var(--teal)); box-shadow: 0 6px 20px rgba(0,130,195,0.3); }
     .why-icon.orange { background: linear-gradient(135deg, var(--orange), #e87830); box-shadow: 0 6px 20px rgba(255,140,66,0.35); }
     .why-card h3 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
     .why-card p { font-size: 14px; color: var(--gray); line-height: 1.7; }
@@ -196,7 +196,7 @@
     .how-teachers { background: var(--white); padding: 80px 32px; }
     .steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 960px; margin: 0 auto; position: relative; }
     .step { text-align: center; position: relative; }
-    .step-circle { width: 60px; height: 60px; border-radius: 50%; background: var(--lime); color: var(--navy); display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 700; margin: 0 auto 20px; box-shadow: 0 6px 20px rgba(212,240,95,0.45); position: relative; z-index: 2; }
+    .step-circle { width: 60px; height: 60px; border-radius: 50%; background: var(--lime); color: var(--navy); display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 700; margin: 0 auto 20px; box-shadow: 0 6px 20px rgba(0,130,195,0.35); position: relative; z-index: 2; }
     .step-circle.sky { background: var(--sky); color: white; box-shadow: 0 6px 20px rgba(92,181,242,0.4); }
     .step-circle.orange { background: var(--orange); color: white; box-shadow: 0 6px 20px rgba(255,140,66,0.4); }
     .step h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
@@ -226,7 +226,7 @@
     .testimonial-top { padding: 24px 24px 0; display: flex; align-items: center; gap: 14px; }
     .testimonial-avatar { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 16px; font-family: 'Poppins', sans-serif; flex-shrink: 0; }
     .testimonial-avatar.sky { background: linear-gradient(135deg, var(--sky), var(--teal)); }
-    .testimonial-avatar.lime { background: linear-gradient(135deg, var(--lime), #b8d84a); color: var(--navy); }
+    .testimonial-avatar.lime { background: linear-gradient(135deg, var(--sky), var(--teal)); color: var(--navy); }
     .testimonial-avatar.orange { background: linear-gradient(135deg, var(--orange), #e87830); }
     .testimonial-meta { flex: 1; }
     .testimonial-name { font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); }
@@ -243,7 +243,7 @@
     .cta-section p { color: rgba(26,26,46,0.75); font-size: 16px; margin-bottom: 34px; max-width: 460px; margin-left: auto; margin-right: auto; position: relative; }
     .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
     .btn-lime-large { background: var(--lime); color: var(--navy); padding: 16px 36px; border-radius: 100px; font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; text-decoration: none; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; box-shadow: var(--shadow-lime); }
-    .btn-lime-large:hover { background: #c8e050; transform: translateY(-3px); box-shadow: 0 8px 30px rgba(212,240,95,0.55); }
+    .btn-lime-large:hover { background: #0070b0; transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,130,195,0.55); }
     .btn-outline-dark { background: transparent; color: var(--navy); border: 2px solid var(--navy); padding: 16px 36px; border-radius: 100px; font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; text-decoration: none; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; }
     .btn-outline-dark:hover { background: var(--navy); color: white; transform: translateY(-2px); }
 
@@ -363,7 +363,7 @@
       <div class="teacher-mascot">
         <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
           <!-- Background blob -->
-          <ellipse cx="200" cy="220" rx="130" ry="120" fill="#D4F05F" opacity="0.2"/>
+          <ellipse cx="200" cy="220" rx="130" ry="120" fill="#0082C3" opacity="0.2"/>
           <!-- Owl Body -->
           <ellipse cx="200" cy="240" rx="110" ry="100" fill="#5CB5F2"/>
           <!-- Wings -->
@@ -401,7 +401,7 @@
           <line x1="340" y1="223" x2="345" y2="250" stroke="#FDB813" stroke-width="4"/>
           <!-- Stars decoration -->
           <polygon points="60,130 63,139 73,139 65,145 68,154 60,148 52,154 55,145 47,139 57,139" fill="#FDB813" opacity="0.7"/>
-          <polygon points="330,80 333,89 343,89 335,95 338,104 330,98 322,104 325,95 317,89 327,89" fill="#D4F05F" opacity="0.8"/>
+          <polygon points="330,80 333,89 343,89 335,95 338,104 330,98 322,104 325,95 317,89 327,89" fill="#0082C3" opacity="0.8"/>
           <polygon points="100,60 103,69 113,69 105,75 108,84 100,78 92,84 95,75 87,69 97,69" fill="#F5D5C8" opacity="0.8"/>
           <!-- Book in wing area -->
           <rect x="115" y="280" width="50" height="35" rx="4" fill="#FF8C42" opacity="0.8"/>
