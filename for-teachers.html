@@ -201,8 +201,8 @@
     .step-circle.orange { background: var(--orange); color: white; box-shadow: 0 6px 20px rgba(255,140,66,0.4); }
     .step h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
     .step p { font-size: 13px; color: var(--gray); line-height: 1.65; max-width: 220px; margin: 0 auto; }
-    /* Timeline connector */
-    .steps-row::after { content: ''; position: absolute; top: 30px; left: 20%; right: 20%; height: 3px; background: linear-gradient(90deg, var(--lime), var(--sky), var(--orange)); border-radius: 2px; z-index: 1; }
+    /* Per-step connectors: anchored to circle right edge */
+    .step:not(:last-child)::before { content: ''; position: absolute; top: 30px; left: calc(50% + 30px); right: calc(-50% - 30px); height: 3px; background: linear-gradient(90deg, var(--lime), var(--sky)); border-radius: 2px; z-index: 1; }
 
     /* ── REQUIREMENTS ── */
     .requirements-section { background: var(--cream); padding: 80px 32px; }
@@ -586,11 +586,11 @@
         <div class="testimonial-avatar orange">J</div>
         <div class="testimonial-meta">
           <div class="testimonial-name">Juan</div>
-          <div class="testimonial-role">French Teacher, Peru (via Liveguru)</div>
+          <div class="testimonial-role">French Teacher, Peru (via Synchrolearn)</div>
         </div>
       </div>
       <div class="testimonial-quote-box">
-        <p class="testimonial-quote">I work for Liveguru as a French teacher. I love the platform. It connects me with students from all over the world. Very professional and easy to use.</p>
+        <p class="testimonial-quote">I work for Synchrolearn as a French teacher. I love the platform. It connects me with students from all over the world. Very professional and easy to use.</p>
       </div>
       <div class="testimonial-bottom">
         <div class="testimonial-stars">★★★★★</div>

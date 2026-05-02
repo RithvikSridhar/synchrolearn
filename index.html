@@ -170,8 +170,8 @@
     .step-circle { width: 56px; height: 56px; border-radius: 50%; background: var(--lime); color: var(--navy); display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 700; margin: 0 auto 18px; box-shadow: 0 6px 20px rgba(212,240,95,0.4); position: relative; z-index: 2; }
     .step h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
     .step p { font-size: 13px; color: var(--gray); line-height: 1.65; max-width: 200px; margin: 0 auto; }
-    /* Timeline connector */
-    .steps-row::after { content: ''; position: absolute; top: 28px; left: 15%; right: 15%; height: 3px; background: linear-gradient(90deg, var(--lime), var(--sky), var(--lime)); border-radius: 2px; z-index: 1; }
+    /* Per-step connectors: anchored to circle right edge */
+    .step:not(:last-child)::before { content: ''; position: absolute; top: 28px; left: calc(50% + 28px); right: calc(-50% - 28px); height: 3px; background: linear-gradient(90deg, var(--lime), var(--sky)); border-radius: 2px; z-index: 1; }
 
     /* ── FEATURES ── */
     .features-section { background: var(--white); padding: 80px 32px; }
@@ -447,7 +447,7 @@
     <div class="step reveal">
       <div class="step-circle">4</div>
       <h3>Track your progress</h3>
-      <p>Get session recordings, notes, and a dashboard that shows exactly how you're improving.</p>
+      <p>Get notes, practice materials, and a dashboard that shows exactly how you're improving.</p>
     </div>
   </div>
 </section>
@@ -564,7 +564,7 @@
       </div>
       <div class="testimonial-quote-box">
         <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">Wonderful platform to learn languages. Liveguru helped me connect with a wonderful German teacher and I must say my language is steadily improving. Added to that is the fact that my classes and timings are customized based on my requirements.</p>
+        <p class="testimonial-quote">Wonderful platform to learn languages. Synchrolearn helped me connect with a wonderful German teacher and I must say my language is steadily improving. Added to that is the fact that my classes and timings are customized based on my requirements.</p>
       </div>
       <div class="testimonial-bottom"></div>
     </div>
