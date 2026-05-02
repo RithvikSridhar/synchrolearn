@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Background -->
+  <rect width="400" height="400" rx="40" fill="#4BA9F4"/>
+
+  <!-- Owl Body -->
+  <ellipse cx="200" cy="240" rx="110" ry="100" fill="#0090D1"/>
+
+  <!-- Wings -->
+  <path d="M95 220 Q60 260 80 300 Q100 280 110 260 Z" fill="#004886"/>
+  <path d="M305 220 Q340 260 320 300 Q300 280 290 260 Z" fill="#004886"/>
+
+  <!-- Feather Lines on Belly (3 rows) -->
+  <path d="M150 290 Q160 275 170 290" stroke="#004886" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M185 295 Q195 280 205 295" stroke="#004886" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M220 290 Q230 275 240 290" stroke="#004886" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M255 295 Q265 280 275 295" stroke="#004886" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <path d="M165 310 Q175 295 185 310" stroke="#004886" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M200 315 Q210 300 220 315" stroke="#004886" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M235 310 Q245 295 255 310" stroke="#004886" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <path d="M175 330 Q185 315 195 330" stroke="#004886" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M210 335 Q220 320 230 335" stroke="#004886" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M245 330 Q255 315 265 330" stroke="#004886" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- Eyes (white circles) -->
+  <circle cx="155" cy="210" r="40" fill="white"/>
+  <circle cx="245" cy="210" r="40" fill="white"/>
+
+  <!-- Pupils -->
+  <circle cx="160" cy="215" r="20" fill="#000000"/>
+  <circle cx="250" cy="215" r="20" fill="#000000"/>
+
+  <!-- Eye Highlights -->
+  <circle cx="150" cy="205" r="6" fill="white"/>
+  <circle cx="240" cy="205" r="6" fill="white"/>
+
+  <!-- Beak (golden inverted triangle) -->
+  <polygon points="200,230 185,255 215,255" fill="#F3C51A"/>
+
+  <!-- Mortarboard Cap -->
+  <polygon points="200,110 95,165 200,150 305,165" fill="#000000"/>
+  <!-- Cap base/band -->
+  <rect x="140" y="162" width="120" height="15" rx="2" fill="#000000"/>
+  <!-- Tassel -->
+  <line x1="305" y1="165" x2="340" y2="210" stroke="#F3C51A" stroke-width="5"/>
+  <circle cx="340" cy="215" r="8" fill="#F3C51A"/>
+  <line x1="340" y1="223" x2="335" y2="250" stroke="#F3C51A" stroke-width="4"/>
+  <line x1="340" y1="223" x2="345" y2="250" stroke="#F3C51A" stroke-width="4"/>
+
+  <!-- Pointer Stick (diagonal) -->
+  <line x1="320" y1="340" x2="120" y2="180" stroke="#000000" stroke-width="7" stroke-linecap="round"/>
+  <!-- Pointer tip -->
+  <polygon points="120,180 100,165 105,195" fill="#000000"/>
+
+  <!-- Brand Text: SYNCHROLEARN -->
+  <text x="200" y="372" font-family="Poppins, Arial Black, sans-serif" font-size="36" font-weight="700" fill="white" text-anchor="middle" letter-spacing="2">SYNCHROLEARN</text>
+
+  <!-- Tagline -->
+  <text x="200" y="393" font-family="Georgia, cursive, serif" font-size="14" font-style="italic" fill="white" text-anchor="middle" opacity="0.9">Excel with a Live Guru</text>
+</svg>
