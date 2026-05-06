@@ -164,6 +164,21 @@
     }
     .hero-mode-overlay h4 { font-size: 11px; font-weight: 700; color: white; line-height: 1.3; }
 
+    /* Hero right: single image */
+    .hero-image-single {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(26,26,46,0.14);
+      height: 100%;
+      max-height: 480px;
+    }
+    .hero-image-single img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     /* Abstract shapes */
     .shape-circle { position: absolute; border-radius: 50%; }
     .shape-rect { position: absolute; border-radius: 24px; }
@@ -395,19 +410,8 @@
         </a>
       </div>
     </div>
-    <div class="hero-modes">
-      <div class="hero-mode-card">
-        <img src="images/teacher-child.jpg" alt="1-on-1 with child" loading="lazy"/>
-        <div class="hero-mode-overlay"><h4>1-on-1 with a Child</h4></div>
-      </div>
-      <div class="hero-mode-card">
-        <img src="images/teacher-adult.jpg" alt="1-on-1 with adult" loading="lazy"/>
-        <div class="hero-mode-overlay"><h4>1-on-1 with an Adult</h4></div>
-      </div>
-      <div class="hero-mode-card">
-        <img src="images/teacher-group.jpg" alt="Group class" loading="lazy"/>
-        <div class="hero-mode-overlay"><h4>Group of Adults</h4></div>
-      </div>
+    <div class="hero-image-single">
+      <img src="images/teacher-hero.jpg" alt="SynchroLearn teacher conducting online class" loading="eager"/>
     </div>
   </div>
 </section>
