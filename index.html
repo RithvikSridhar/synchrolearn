@@ -7,12 +7,12 @@
   <meta name="description" content="Live 1-on-1 online tutoring with expert teachers. SynchroLearn connects students with qualified tutors in real-time for personalized, interactive learning sessions."/>
   <link rel="icon" type="image/png" href="logo.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,800;1,9..144,700&family=Poppins:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #FAF7F2;
-      --bg-alt: #F5F0E8;
+      --bg-alt: #F0EBE3;
       --surface: #FFFFFF;
       --foreground: #1C1A17;
       --foreground-muted: #5C5650;
@@ -26,30 +26,31 @@
       --golden: #FDB813;
       --teal: #25D366;
       --forest: #2F5B4F;
-      --foreground-inv: #FFFFFF;
       --shadow-sm: 0 2px 8px rgba(28, 26, 23, 0.06);
       --shadow-md: 0 4px 20px rgba(28, 26, 23, 0.10);
-      --shadow-lg: 0 8px 40px rgba(28, 26, 23, 0.14);
+      --shadow-lg: 0 8px 48px rgba(28, 26, 23, 0.14);
       --radius-sm: 8px;
       --radius: 16px;
-      --radius-lg: 24px;
+      --radius-lg: 28px;
       --radius-full: 9999px;
-      --transition: all 0.25s cubic-bezier(0.34, 1.2, 0.64, 1);
+      --transition: all 0.28s cubic-bezier(0.34, 1.15, 0.64, 1);
     }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Source Sans 3', -apple-system, sans-serif; background: var(--bg); color: var(--foreground); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body {
+      font-family: 'Source Sans 3', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
     h1,h2,h3,h4 { font-family: 'Poppins', sans-serif; line-height: 1.2; }
-
-    /* ── REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ── NAV ── */
     nav {
       background: rgba(250, 247, 242, 0.92);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
-      padding: 0 48px;
+      padding: 0 64px;
       height: 72px;
       display: flex;
       align-items: center;
@@ -69,321 +70,325 @@
     .nav-links a.active { color: var(--sky-dark); }
     .nav-right { display: flex; align-items: center; gap: 12px; }
     .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: var(--radius-full); font-family: 'Source Sans 3', sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer; border: none; transition: var(--transition); white-space: nowrap; }
-    .btn-lime { background: var(--lime); color: var(--foreground); box-shadow: 0 4px 16px rgba(212, 240, 95, 0.3); }
-    .btn-lime:hover { background: var(--lime-dark); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(212, 240, 95, 0.4); }
+    .btn-lime { background: var(--lime); color: var(--foreground); box-shadow: 0 4px 16px rgba(212, 240, 95, 0.28); }
+    .btn-lime:hover { background: var(--lime-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212, 240, 95, 0.38); }
     .btn-whatsapp { background: var(--surface); color: var(--teal); border: 2px solid var(--teal); }
     .btn-whatsapp:hover { background: var(--teal); color: white; transform: translateY(-2px); }
-    .btn-whatsapp svg { transition: color 0.2s; }
-    .btn-whatsapp:hover svg { color: white; }
-    .btn-outline { background: transparent; color: var(--foreground); border: 2px solid var(--border-strong); }
-    .btn-outline:hover { border-color: var(--sky); color: var(--sky-dark); transform: translateY(-2px); }
-    .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-    .mobile-toggle svg { width: 22px; height: 22px; color: var(--foreground); }
+    .btn-email { background: var(--surface); color: var(--sky); border: 2px solid var(--sky); }
+    .btn-email:hover { background: var(--sky); color: white; transform: translateY(-2px); }
+    .btn-outline-dark { background: transparent; color: var(--foreground); border: 2px solid var(--border-strong); }
+    .btn-outline-dark:hover { background: var(--foreground); color: white; transform: translateY(-2px); }
 
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      min-height: 640px;
-      display: flex;
-      align-items: center;
+    /* ── HERO LANDING ── */
+    .hero-landing {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 72px);
       overflow: hidden;
+    }
+
+    /* Left panel */
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px 80px 64px;
+      position: relative;
       background: var(--bg);
     }
-    .hero::before {
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      left: -80px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(92,181,242,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      right: 40px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,240,95,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Logo mark above headline */
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s ease-out both;
+    }
+    .hero-eyebrow-logo {
+      width: 36px;
+      height: 36px;
+      background: var(--foreground);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-eyebrow-logo svg { width: 20px; height: 20px; }
+    .hero-eyebrow-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .hero-headline {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(36px, 4vw, 58px);
+      font-weight: 700;
+      color: var(--foreground);
+      line-height: 1.08;
+      letter-spacing: -0.5px;
+      margin-bottom: 20px;
+      animation: fadeUp 0.65s 0.1s ease-out both;
+    }
+    .hero-headline em {
+      font-style: normal;
+      color: var(--sky);
+    }
+    .hero-sub {
+      font-size: 17px;
+      color: var(--foreground-muted);
+      line-height: 1.75;
+      max-width: 440px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.65s 0.18s ease-out both;
+    }
+
+    /* Role selector */
+    .role-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      animation: fadeUp 0.65s 0.26s ease-out both;
+    }
+    .role-selector-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      margin-bottom: 4px;
+    }
+    .role-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 20px 24px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .role-card::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: 
-        radial-gradient(ellipse at 80% 20%, rgba(92, 181, 242, 0.06) 0%, transparent 50%),
-        radial-gradient(ellipse at 20% 80%, rgba(212, 240, 95, 0.06) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.25s;
     }
-    .hero-content {
+    .role-card:hover {
+      border-color: var(--border-strong);
+      transform: translateX(6px);
+      box-shadow: var(--shadow-md);
+    }
+    .role-card.student:hover::before { background: linear-gradient(135deg, rgba(92,181,242,0.04), transparent); opacity: 1; }
+    .role-card.teacher:hover::before { background: linear-gradient(135deg, rgba(212,240,95,0.06), transparent); opacity: 1; }
+
+    .role-icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
       position: relative;
       z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 80px 48px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-      width: 100%;
     }
-    .hero-text { }
-    .hero-text .eyebrow {
-      display: inline-flex;
+    .role-icon-wrap.sky { background: linear-gradient(135deg, var(--sky), var(--sky-dark)); }
+    .role-icon-wrap.lime { background: linear-gradient(135deg, var(--lime), var(--lime-dark)); }
+    .role-icon-wrap svg { width: 22px; height: 22px; }
+    .role-icon-wrap.lime svg { color: var(--foreground); }
+
+    .role-text { position: relative; z-index: 1; flex: 1; }
+    .role-text .role-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--foreground);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .role-text .role-sub {
+      font-size: 13px;
+      color: var(--foreground-muted);
+      line-height: 1.4;
+      margin: 0;
+    }
+    .role-arrow {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg);
+      display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: var(--transition);
+      position: relative;
+      z-index: 1;
+    }
+    .role-card:hover .role-arrow {
+      background: var(--sky);
+      color: white;
+      transform: translateX(4px);
+    }
+    .role-card.teacher:hover .role-arrow {
+      background: var(--foreground);
+      color: white;
+    }
+    .role-arrow svg { width: 16px; height: 16px; transition: var(--transition); }
+    .role-card:hover .role-arrow svg { transform: translateX(2px); }
+
+    /* Right panel — photo */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-alt);
+    }
+    .hero-photo-fill {
+      position: absolute;
+      inset: 0;
+      background-image: url('hero-learner-group.jpg');
+      background-size: cover;
+      background-position: center top;
+    }
+    .hero-photo-fill::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(250, 247, 242, 0.15) 0%,
+        transparent 30%,
+        transparent 70%,
+        rgba(240, 235, 227, 0.15) 100%
+      );
+    }
+    /* Floating accent card */
+    .hero-float-card {
+      position: absolute;
+      bottom: 48px;
+      left: -24px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: var(--radius-lg);
+      padding: 18px 22px;
+      box-shadow: 0 8px 32px rgba(28,26,23,0.12);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 260px;
+      animation: floatIn 0.8s 0.5s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+    }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .float-avatar-stack { display: flex; }
+    .float-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.8);
+      margin-left: -10px;
+      object-fit: cover;
+    }
+    .float-avatar:first-child { margin-left: 0; }
+    .float-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
+    .float-text { flex: 1; }
+    .float-text .float-title { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 700; color: var(--foreground); }
+    .float-text .float-sub { font-size: 12px; color: var(--foreground-muted); }
+    .float-badge {
+      background: var(--teal);
+      color: white;
       font-size: 11px;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--forest);
-      margin-bottom: 20px;
+      padding: 4px 8px;
+      border-radius: var(--radius-full);
     }
-    .hero-text .eyebrow::before {
-      content: '';
-      width: 24px;
-      height: 2px;
-      background: var(--lime);
-    }
-    .hero-text h1 { 
-      font-size: clamp(32px, 4.5vw, 52px); 
-      font-weight: 800; 
-      color: var(--foreground); 
-      margin-bottom: 20px; 
-      letter-spacing: -0.5px;
-      line-height: 1.1;
-    }
-    .hero-text h1 em { 
-      font-style: normal; 
-      color: var(--sky); 
-    }
-    .hero-text p { 
-      font-size: 17px; 
-      color: var(--foreground-muted); 
-      max-width: 460px; 
-      margin-bottom: 36px; 
-      line-height: 1.8;
-      font-weight: 400;
-    }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    
-    /* Owl mascot */
-    .hero-illustration { 
-      position: relative; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      height: 460px; 
-    }
-    .owl-container {
-      position: relative;
-      z-index: 2;
-    }
-    .owl-container svg { 
-      width: 260px; 
-      height: 260px; 
-      filter: drop-shadow(0 16px 40px rgba(28, 26, 23, 0.12)); 
-    }
-    /* Decorative elements */
-    .deco-shape {
+
+    /* Ambient shape decoration on right */
+    .hero-shape {
       position: absolute;
+      top: 48px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,240,95,0.18) 0%, transparent 70%);
+      pointer-events: none;
     }
-    .deco-1 { width: 200px; height: 200px; background: var(--sky); top: 20px; right: 40px; opacity: 0.15; }
-    .deco-2 { width: 120px; height: 120px; background: var(--lime); bottom: 60px; right: 100px; opacity: 0.2; border-radius: 30px; transform: rotate(15deg); }
-    .deco-3 { width: 80px; height: 80px; background: rgba(253, 184, 19, 0.3); top: 100px; left: 40px; opacity: 0.6; }
-    .deco-4 { width: 50px; height: 50px; background: var(--sky); bottom: 120px; left: 80px; opacity: 0.2; border-radius: 12px; transform: rotate(-10deg); }
-    .deco-dot { position: absolute; width: 10px; height: 10px; border-radius: 50%; }
-    .dot-1 { background: var(--sky); top: 60px; right: 160px; opacity: 0.4; }
-    .dot-2 { background: var(--lime); bottom: 100px; right: 120px; opacity: 0.5; }
-    .dot-3 { background: var(--golden); top: 160px; left: 60px; opacity: 0.5; }
-    .dot-4 { background: var(--sky); bottom: 160px; left: 120px; opacity: 0.3; }
-
-    /* ── TRUST BAR ── */
-    .trust-bar { background: var(--surface); padding: 24px 32px; text-align: center; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .trust-bar p { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; }
-    .trust-bar-logos { display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap; }
-    .trust-bar-logos span { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; color: var(--muted); opacity: 0.5; letter-spacing: -0.3px; }
-
-    /* ── STATS ── */
-    .stats-section { background: var(--bg); padding: 64px 48px; }
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
-    .stat-card { background: var(--surface); border-radius: var(--radius); padding: 32px 24px; text-align: center; box-shadow: var(--shadow-sm); border: 1px solid var(--border); transition: var(--transition); }
-    .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .stat-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
-    .stat-icon svg { width: 22px; height: 22px; color: white; }
-    .stat-icon.lime { background: linear-gradient(135deg, var(--lime), var(--lime-dark)); }
-    .stat-icon.sky { background: linear-gradient(135deg, var(--sky), var(--sky-dark)); }
-    .stat-icon.golden { background: linear-gradient(135deg, var(--golden), #D49A00); }
-    .stat-icon.forest { background: linear-gradient(135deg, var(--forest), #1E3D32); }
-    .stat-number { font-family: 'Poppins', sans-serif; font-size: 40px; font-weight: 800; color: var(--sky); margin-bottom: 6px; line-height: 1; }
-    .stat-number.golden { color: var(--golden); }
-    .stat-number.forest { color: var(--forest); }
-    .stat-label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
-
-    /* ── HOW IT WORKS ── */
-    .how-it-works { background: var(--bg); padding: 80px 48px; }
-    .section-header { text-align: center; margin-bottom: 56px; }
-    .section-header .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--forest); margin-bottom: 14px; }
-    .section-header .eyebrow::before, .section-header .eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--lime); }
-    .section-header h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 800; color: var(--foreground); margin-bottom: 14px; letter-spacing: -0.5px; }
-    .section-header p { font-size: 16px; color: var(--foreground-muted); max-width: 480px; margin: 0 auto; line-height: 1.7; }
-    .steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
-    .step { text-align: center; position: relative; }
-    .step-circle { 
-      width: 56px; height: 56px; 
-      border-radius: 50%; 
-      background: linear-gradient(135deg, var(--sky), var(--sky-dark)); 
-      color: white; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      font-family: 'Poppins', sans-serif; 
-      font-size: 22px; 
-      font-weight: 800; 
-      margin: 0 auto 20px; 
-      box-shadow: 0 6px 20px rgba(92, 181, 242, 0.35);
-      position: relative;
-      z-index: 2;
-    }
-    .step h3 { font-size: 16px; font-weight: 700; color: var(--foreground); margin-bottom: 10px; }
-    .step p { font-size: 13px; color: var(--foreground-muted); line-height: 1.7; max-width: 180px; margin: 0 auto; }
-    .steps-connectors { width: 100%; max-width: 1000px; margin: -34px auto 0; display: block; position: relative; z-index: 1; pointer-events: none; }
-
-    /* ── FEATURES ── */
-    .features-section { background: var(--surface); padding: 80px 48px; border-top: 1px solid var(--border); }
-    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
-    .feature-card { 
-      background: var(--bg); 
-      border-radius: var(--radius); 
-      padding: 28px; 
-      display: flex; 
-      gap: 18px; 
-      box-shadow: var(--shadow-sm); 
-      border: 1px solid var(--border);
-      transition: var(--transition); 
-    }
-    .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: rgba(212, 240, 95, 0.4); }
-    .feature-icon { 
-      width: 52px; height: 52px; 
-      border-radius: var(--radius-sm); 
-      display: flex; align-items: center; justify-content: center; 
-      flex-shrink: 0; 
-    }
-    .feature-icon svg { width: 24px; height: 24px; color: white; }
-    .feature-icon.lime { background: linear-gradient(135deg, var(--lime), var(--lime-dark)); }
-    .feature-icon.sky { background: linear-gradient(135deg, var(--sky), var(--sky-dark)); }
-    .feature-icon.golden { background: linear-gradient(135deg, var(--golden), #D49A00); }
-    .feature-icon.forest { background: linear-gradient(135deg, var(--forest), #1E3D32); }
-    .feature-card h3 { font-family: 'Source Sans 3', sans-serif; font-size: 15px; font-weight: 700; color: var(--foreground); margin-bottom: 6px; }
-    .feature-card p { font-size: 13px; color: var(--foreground-muted); line-height: 1.7; }
-
-    /* ── TESTIMONIALS ── */
-    .testimonials-section { background: var(--bg-alt); padding: 80px 48px; border-top: 1px solid var(--border); }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
-    .testimonial-card { 
-      background: var(--surface); 
-      border-radius: var(--radius); 
-      padding: 0; 
-      overflow: hidden; 
-      box-shadow: var(--shadow-sm); 
-      border: 1px solid var(--border);
-      transition: var(--transition); 
-    }
-    .testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .testimonial-top { padding: 24px 24px 0; display: flex; align-items: center; gap: 14px; }
-    .testimonial-avatar { 
-      width: 48px; height: 48px; 
-      border-radius: 50%; 
-      display: flex; align-items: center; justify-content: center; 
-      color: white; font-weight: 700; font-size: 14px; 
-      font-family: 'Poppins', sans-serif;
-      flex-shrink: 0; 
-    }
-    .testimonial-avatar.lime { background: linear-gradient(135deg, var(--lime), var(--lime-dark)); }
-    .testimonial-avatar.sky { background: linear-gradient(135deg, var(--sky), var(--sky-dark)); }
-    .testimonial-avatar.golden { background: linear-gradient(135deg, var(--golden), #D49A00); }
-    .testimonial-meta { flex: 1; }
-    .testimonial-name { font-family: 'Source Sans 3', sans-serif; font-size: 14px; font-weight: 700; color: var(--foreground); }
-    .testimonial-role { font-size: 12px; color: var(--muted); margin-top: 3px; }
-    .testimonial-quote-box { padding: 16px 24px; }
-    .testimonial-quote { 
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 14px; 
-      color: var(--foreground); 
-      line-height: 1.8; 
-      margin-bottom: 16px; 
-      font-style: italic;
-    }
-    .testimonial-stars { color: var(--golden); font-size: 13px; letter-spacing: 3px; margin-bottom: 4px; font-weight: 700; }
-    .testimonial-bottom { padding: 0 24px 24px; }
-
-    /* ── CTA ── */
-    .cta-section { 
-      background: var(--surface); 
-      padding: 80px 48px; 
-      text-align: center; 
-      border-top: 1px solid var(--border);
-    }
-    .cta-section h2 { 
-      font-size: clamp(26px, 4vw, 42px); 
-      color: var(--foreground); 
-      margin-bottom: 14px; 
-      font-weight: 800;
-    }
-    .cta-section p { 
-      color: var(--foreground-muted); 
-      font-size: 16px; 
-      margin-bottom: 36px; 
-      max-width: 460px; 
-      margin-left: auto; 
-      margin-right: auto; 
-      line-height: 1.7;
-    }
-    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .btn-white { background: white; color: var(--foreground); box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-    .btn-white:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
-    .btn-outline-dark { background: transparent; color: var(--foreground); border: 2px solid var(--foreground); }
-    .btn-outline-dark:hover { background: var(--foreground); color: white; transform: translateY(-2px); }
 
     /* ── FOOTER ── */
-    footer { 
-      background: var(--bg); 
-      border-top: 1px solid var(--border); 
-      padding: 52px 48px 28px; 
-    }
-    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; max-width: 1000px; margin: 0 auto 36px; }
-    .footer-brand .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-bottom: 8px; }
+    footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding: 64px 64px 32px; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; max-width: 1100px; margin: 0 auto; }
+    .footer-brand .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-bottom: 14px; }
     .footer-brand .footer-logo img { height: 40px; width: auto; }
     .footer-brand .footer-logo-text { display: flex; flex-direction: column; line-height: 1.15; }
     .footer-brand .footer-logo-text .brand { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: var(--foreground); }
     .footer-brand .footer-logo-text .tagline { font-size: 9px; font-style: italic; color: var(--sky); }
     .footer-brand p { font-size: 13px; color: var(--foreground-muted); margin-top: 14px; line-height: 1.75; max-width: 240px; }
     .footer-social { display: flex; gap: 10px; margin-top: 18px; }
-    .footer-social a { 
-      width: 40px; height: 40px; 
-      border-radius: 50%; 
-      border: 1px solid var(--border-strong); 
-      display: flex; align-items: center; justify-content: center; 
-      color: var(--foreground-muted); 
-      transition: var(--transition); 
-      text-decoration: none;
-    }
+    .footer-social a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; color: var(--foreground-muted); transition: var(--transition); text-decoration: none; }
     .footer-social a:hover { background: var(--lime); border-color: var(--lime); color: var(--foreground); transform: translateY(-2px); }
     .footer-col h4 { font-family: 'Source Sans 3', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--foreground); margin-bottom: 16px; }
     .footer-col ul { list-style: none; }
     .footer-col li { margin-bottom: 10px; }
     .footer-col a { color: var(--foreground-muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
     .footer-col a:hover { color: var(--sky-dark); }
-    .footer-bottom { border-top: 1px solid var(--border); padding-top: 22px; text-align: center; max-width: 1000px; margin: 0 auto; font-size: 12px; color: var(--muted); }
+    .footer-bottom { text-align: center; padding-top: 32px; margin-top: 40px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     /* ── MOBILE ── */
     @media (max-width: 900px) {
-      .hero-content { grid-template-columns: 1fr; padding: 60px 24px; }
-      .hero-illustration { display: none; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .steps-row { grid-template-columns: repeat(2, 1fr); gap: 32px; }
-      .steps-row::after { display: none; }
-      .features-grid { grid-template-columns: repeat(2, 1fr); }
-      .testimonials-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 768px) {
       nav { padding: 0 24px; }
       .nav-links { display: none; }
-      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px; box-shadow: var(--shadow-lg); z-index: 99; }
-      .mobile-toggle { display: block; }
+      .hero-landing { grid-template-columns: 1fr; }
+      .hero-left { padding: 60px 28px 48px; order: 2; }
+      .hero-right { min-height: 340px; order: 1; }
+      .hero-float-card { bottom: 20px; left: 20px; }
+      .hero-headline { font-size: 32px; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
       .footer-brand { grid-column: 1 / -1; }
-      .features-grid { grid-template-columns: 1fr; }
+      footer { padding: 48px 28px 24px; }
     }
     @media (max-width: 480px) {
+      .features-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); padding: 48px 24px; gap: 16px; }
-      .steps-row { grid-template-columns: 1fr; }
-      .hero-actions { flex-direction: column; }
-      .btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -398,282 +403,90 @@
       <span class="tagline">Excel with a Live Guru</span>
     </div>
   </a>
-  <button class="mobile-toggle" aria-label="Toggle menu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-  </button>
   <ul class="nav-links">
-    <li><a href="index.html" class="active">For Learners</a></li>
+    <li><a href="student.html">For Students</a></li>
     <li><a href="for-teachers.html">For Teachers</a></li>
-    <li><a href="#how-it-works">How It Works</a></li>
-    <li><a href="#features">Features</a></li>
   </ul>
   <div class="nav-right">
-    <a href="https://wa.me/919791018666?text=Hi%2C%20I%27m%20interested%20in%20SynchroLearn%20tutoring" class="btn btn-whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp Us">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </a>
+    <a href="https://wa.me/919791018666?text=Hi%2C%20I%27m%20interested%20in%20SynchroLearn" class="btn btn-whatsapp" target="_blank" rel="noopener">Talk to Us</a>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-text reveal">
-      <div class="eyebrow">Live 1-on-1 Tutoring</div>
-      <h1>Learn with a <em>Live Guru</em>,<br/>not a recorded video</h1>
-      <p>SynchroLearn connects you with expert tutors for personal, interactive sessions. Real conversations. Real progress. Book your first session today.</p>
-      <div class="hero-actions">
-        <a href="https://wa.me/919791018666?text=Hi%2C%20I%27m%20interested%20in%20SynchroLearn%20tutoring" class="btn btn-whatsapp" target="_blank" rel="noopener">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Talk to Us
-        </a>
-        <a href="mailto:liveguru.in@gmail.com?subject=SynchroLearn%20Inquiry" class="btn btn-outline-dark" target="_blank" rel="noopener">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Email Us
-        </a>
-      </div>
-    </div>
-    <div class="hero-illustration">
-      <!-- Decorative shapes -->
-      <div class="deco-shape deco-1"></div>
-      <div class="deco-shape deco-2"></div>
-      <div class="deco-shape deco-3"></div>
-      <div class="deco-shape deco-4"></div>
-      <!-- Floating dots -->
-      <div class="deco-dot dot-1"></div>
-      <div class="deco-dot dot-2"></div>
-      <div class="deco-dot dot-3"></div>
-      <div class="deco-dot dot-4"></div>
-      <!-- Owl mascot -->
-      <div class="owl-container">
-        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-          <!-- Background blob -->
-          <ellipse cx="200" cy="220" rx="130" ry="120" fill="#D4F05F" opacity="0.25"/>
-          <!-- Owl Body -->
-          <ellipse cx="200" cy="240" rx="110" ry="100" fill="#5CB5F2"/>
-          <!-- Wings -->
-          <path d="M95 220 Q60 260 80 300 Q100 280 110 260 Z" fill="#004B8D"/>
-          <path d="M305 220 Q340 260 320 300 Q300 280 290 260 Z" fill="#004B8D"/>
-          <!-- Feather Lines -->
-          <path d="M150 290 Q160 275 170 290" stroke="#004B8D" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <path d="M185 295 Q195 280 205 295" stroke="#004B8D" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <path d="M220 290 Q230 275 240 290" stroke="#004B8D" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <path d="M255 295 Q265 280 275 295" stroke="#004B8D" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <path d="M165 310 Q175 295 185 310" stroke="#004B8D" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <path d="M200 315 Q210 300 220 315" stroke="#004B8D" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <path d="M235 310 Q245 295 255 310" stroke="#004B8D" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <path d="M175 330 Q185 315 195 330" stroke="#004B8D" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <path d="M210 335 Q220 320 230 335" stroke="#004B8D" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <path d="M245 330 Q255 315 265 330" stroke="#004B8D" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <!-- Eyes -->
-          <circle cx="155" cy="210" r="40" fill="white"/>
-          <circle cx="245" cy="210" r="40" fill="white"/>
-          <circle cx="160" cy="215" r="20" fill="#1A1A2E"/>
-          <circle cx="250" cy="215" r="20" fill="#1A1A2E"/>
-          <circle cx="150" cy="205" r="6" fill="white"/>
-          <circle cx="240" cy="205" r="6" fill="white"/>
-          <!-- Beak -->
-          <polygon points="200,230 185,255 215,255" fill="#FDB813"/>
-          <!-- Smile -->
-          <path d="M190 258 Q200 268 210 258" stroke="#FDB813" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <!-- Mortarboard Cap -->
-          <polygon points="200,110 95,165 200,150 305,165" fill="#1A1A2E"/>
-          <rect x="140" y="162" width="120" height="15" rx="2" fill="#1A1A2E"/>
-          <!-- Tassel -->
-          <line x1="305" y1="165" x2="340" y2="210" stroke="#FDB813" stroke-width="5"/>
-          <circle cx="340" cy="215" r="8" fill="#FDB813"/>
-          <line x1="340" y1="223" x2="335" y2="250" stroke="#FDB813" stroke-width="4"/>
-          <line x1="340" y1="223" x2="345" y2="250" stroke="#FDB813" stroke-width="4"/>
-          <!-- Stars decoration -->
-          <polygon points="60,130 63,139 73,139 65,145 68,154 60,148 52,154 55,145 47,139 57,139" fill="#FDB813" opacity="0.7"/>
-          <polygon points="330,80 333,89 343,89 335,95 338,104 330,98 322,104 325,95 317,89 327,89" fill="#D4F05F" opacity="0.8"/>
-          <polygon points="100,60 103,69 113,69 105,75 108,84 100,78 92,84 95,75 87,69 97,69" fill="#F5D5C8" opacity="0.8"/>
+<section class="hero-landing">
+  <!-- Left: Content -->
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"/>
         </svg>
       </div>
+      <span class="hero-eyebrow-text">SynchroLearn</span>
     </div>
-  </div>
-</section>
 
-<!-- STATS -->
-<section class="stats-section">
-  <div class="stats-grid">
-    <div class="stat-card reveal">
-      <div class="stat-icon lime">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-      </div>
-      <div class="stat-number">500+</div>
-      <div class="stat-label">Expert Tutors</div>
-    </div>
-    <div class="stat-card reveal">
-      <div class="stat-icon sky">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      </div>
-      <div class="stat-number">1000+</div>
-      <div class="stat-label">Sessions Completed</div>
-    </div>
-    <div class="stat-card reveal">
-      <div class="stat-icon golden">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      </div>
-      <div class="stat-number golden">4.9/5</div>
-      <div class="stat-label">Average Rating</div>
-    </div>
-    <div class="stat-card reveal">
-      <div class="stat-icon forest">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
-      </div>
-      <div class="stat-number forest">20+</div>
-      <div class="stat-label">Countries</div>
-    </div>
-  </div>
-</section>
+    <h1 class="hero-headline">Real learning,<br/><em>not recorded videos</em></h1>
+    <p class="hero-sub">Live 1-on-1 sessions with expert tutors. Personal, interactive, and built around your goals.</p>
 
-<!-- HOW IT WORKS -->
-<section class="how-it-works" id="how-it-works">
-  <div class="section-header reveal">
-    <div class="eyebrow">How It Works</div>
-    <h2>From Sign-Up to Session in Minutes</h2>
-    <p>A seamless experience designed for busy families — no complicated onboarding, no long contracts.</p>
-  </div>
-  <div class="steps-row">
-    <div class="step reveal">
-      <div class="step-circle">1</div>
-      <h3>Tell us your goals</h3>
-      <p>Share what you want to learn — a subject, exam, or skill. We'll match you with the perfect tutor.</p>
-    </div>
-    <div class="step reveal">
-      <div class="step-circle">2</div>
-      <h3>Book a session</h3>
-      <p>Choose a time that fits your schedule. Sessions are 45 minutes, available 7 days a week.</p>
-    </div>
-    <div class="step reveal">
-      <div class="step-circle">3</div>
-      <h3>Live video session</h3>
-      <p>Connect face-to-face with your tutor via HD video. Share screens, draw on a whiteboard, ask anything.</p>
-    </div>
-    <div class="step reveal">
-      <div class="step-circle">4</div>
-      <h3>Track your progress</h3>
-      <p>Get notes, practice materials, and a dashboard that shows exactly how you're improving.</p>
-    </div>
-  </div>
-  <!-- Clean SVG connector lines -->
-  <svg class="steps-connectors" viewBox="0 0 1000 60" preserveAspectRatio="none">
-    <line x1="232" y1="28" x2="256" y2="28" stroke="url(#connectorGrad)" stroke-width="3" stroke-linecap="round"/>
-    <line x1="504" y1="28" x2="528" y2="28" stroke="url(#connectorGrad)" stroke-width="3" stroke-linecap="round"/>
-    <line x1="776" y1="28" x2="800" y2="28" stroke="url(#connectorGrad)" stroke-width="3" stroke-linecap="round"/>
-    <defs>
-      <linearGradient id="connectorGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#D4F05F"/>
-        <stop offset="100%" stop-color="#5CB5F2"/>
-      </linearGradient>
-    </defs>
-  </svg>
-</section>
+    <div class="role-selector">
+      <p class="role-selector-label">Get started as</p>
 
-<!-- FEATURES -->
-<section class="features-section" id="features">
-  <div class="section-header reveal">
-    <div class="eyebrow">Everything You Need</div>
-    <h2>A Complete Learning Environment</h2>
-    <p>Built for focus and progress — not distractions or busywork.</p>
-  </div>
-  <div class="features-grid">
-    <div class="feature-card reveal">
-      <div class="feature-icon lime">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      </div>
-      <div>
-        <h3>Tutors Who Fit Your Needs</h3>
-        <p>Our biggest strength — we match you with tutors whose skills and teaching style align perfectly with your goals.</p>
-      </div>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon sky">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-      </div>
-      <div>
-        <h3>Customised Courses</h3>
-        <p>No cookie-cutter lessons. Your tutor builds a curriculum around your exact goals — exam prep, coursework, or skill-building.</p>
-      </div>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon golden">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      </div>
-      <div>
-        <h3>Flexible Classes</h3>
-        <p>Early mornings, late evenings, weekends — book sessions that fit your schedule, not the other way around.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials-section" id="testimonials">
-  <div class="section-header reveal">
-    <div class="eyebrow">Success Stories</div>
-    <h2>What Families Are Saying</h2>
-    <p>Real results from real students — not stock photos or fabricated reviews.</p>
-  </div>
-  <div class="testimonials-grid">
-    <div class="testimonial-card reveal">
-      <div class="testimonial-top">
-        <div class="testimonial-avatar lime">PS</div>
-        <div class="testimonial-meta">
-          <div class="testimonial-name">Priya Sharma</div>
-          <div class="testimonial-role">Parent · Mumbai</div>
+      <a href="student.html" class="role-card student">
+        <div class="role-icon-wrap sky">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
         </div>
-      </div>
-      <div class="testimonial-quote-box">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">My daughter's math grades went from C to A- in just 6 weeks. The tutor made complex concepts so simple. Worth every rupee!</p>
-      </div>
-      <div class="testimonial-bottom"></div>
-    </div>
-    <div class="testimonial-card reveal">
-      <div class="testimonial-top">
-        <div class="testimonial-avatar sky">RK</div>
-        <div class="testimonial-meta">
-          <div class="testimonial-name">Rahul Kumar</div>
-          <div class="testimonial-role">Student · Class 12 · Delhi</div>
+        <div class="role-text">
+          <span class="role-label">I'm a Student</span>
+          <span class="role-sub">Find a tutor and start learning today</span>
         </div>
-      </div>
-      <div class="testimonial-quote-box">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">I was struggling with Physics until I found SynchroLearn. Now I'm ranked 3rd in my class. The teachers actually care.</p>
-      </div>
-      <div class="testimonial-bottom"></div>
-    </div>
-    <div class="testimonial-card reveal">
-      <div class="testimonial-top">
-        <div class="testimonial-avatar golden">AM</div>
-        <div class="testimonial-meta">
-          <div class="testimonial-name">Anita Menon</div>
-          <div class="testimonial-role">Parent · Bangalore</div>
+        <div class="role-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
         </div>
-      </div>
-      <div class="testimonial-quote-box">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">As a working parent, finding quality tuitions was tough. SynchroLearn solved everything — flexible timing, verified teachers, real results.</p>
-      </div>
-      <div class="testimonial-bottom"></div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="reveal">
-    <h2>Ready to Excel?</h2>
-    <p>Book your first free session today. No commitment, no credit card needed.</p>
-    <div class="cta-actions">
-      <a href="https://wa.me/919791018666?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%20session" class="btn btn-whatsapp" target="_blank" rel="noopener">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Talk to Us
       </a>
-      <a href="mailto:liveguru.in@gmail.com?subject=SynchroLearn%20Inquiry" class="btn btn-white" target="_blank" rel="noopener">
-        Email Us
+
+      <a href="for-teachers.html" class="role-card teacher">
+        <div class="role-icon-wrap lime">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1C1A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="role-text">
+          <span class="role-label">I'm a Teacher</span>
+          <span class="role-sub">Share knowledge and earn from home</span>
+        </div>
+        <div class="role-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
       </a>
+    </div>
+  </div>
+
+  <!-- Right: Photo -->
+  <div class="hero-right">
+    <div class="hero-photo-fill"></div>
+    <div class="hero-shape"></div>
+    <!-- Floating social proof card -->
+    <div class="hero-float-card">
+      <div class="float-avatar-stack">
+        <div class="float-avatar"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Tutor Priya" loading="lazy"/></div>
+        <div class="float-avatar"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Tutor Arjun" loading="lazy"/></div>
+        <div class="float-avatar"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Tutor Sneha" loading="lazy"/></div>
+      </div>
+      <div class="float-text">
+        <div class="float-title">500+ Expert Tutors</div>
+        <div class="float-sub">Teaching across 20+ countries</div>
+      </div>
+      <div class="float-badge">Live</div>
     </div>
   </div>
 </section>
@@ -708,36 +521,20 @@
     <div class="footer-col">
       <h4>Product</h4>
       <ul>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="#testimonials">Success Stories</a></li>
+        <li><a href="student.html">For Students</a></li>
+        <li><a href="for-teachers.html">For Teachers</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>For Teachers</h4>
+      <h4>Contact</h4>
       <ul>
-        <li><a href="for-teachers.html">Apply as a Tutor</a></li>
-        <li><a href="mailto:liveguru.in@gmail.com">Contact Us</a></li>
+        <li><a href="mailto:liveguru.in@gmail.com">Email Us</a></li>
+        <li><a href="https://wa.me/919791018666" target="_blank" rel="noopener">WhatsApp</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    © 2026 SynchroLearn. Excel with a Live Guru.
-  </div>
+  <div class="footer-bottom">© 2026 SynchroLearn. Excel with a Live Guru.</div>
 </footer>
 
-<script>
-  // Scroll reveal
-  const observerOptions = { threshold: 0.1 };
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-  
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
 </body>
 </html>
