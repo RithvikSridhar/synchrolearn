@@ -246,6 +246,40 @@
     .feature-card h3 { font-family: 'Source Sans 3', sans-serif; font-size: 15px; font-weight: 700; color: var(--foreground); margin-bottom: 6px; }
     .feature-card p { font-size: 13px; color: var(--foreground-muted); line-height: 1.6; }
 
+    /* ── SESSION FORMATS ── */
+    .formats-section { padding: 80px 64px; }
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .format-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow-md);
+    }
+    .format-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .format-card:hover img { transform: scale(1.03); }
+    .format-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 24px;
+      background: linear-gradient(to top, rgba(28,26,23,0.75) 0%, transparent 100%);
+    }
+    .format-overlay h3 { font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; color: white; margin-bottom: 4px; }
+    .format-overlay p { font-size: 12px; color: rgba(255,255,255,0.8); }
+
     /* ── TESTIMONIALS ── */
     .testimonials-section { padding: 80px 64px; background: var(--bg-alt); }
     .testimonials-grid {
@@ -450,6 +484,30 @@
       <div class="feature-icon golden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
       <h3>Flexible Classes</h3>
       <p>Early mornings, late evenings, weekends — book sessions that fit your schedule.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SESSION FORMATS -->
+<section class="formats-section" id="formats">
+  <div class="section-center">
+    <h2>How You'll Learn</h2>
+    <p>Real-time sessions, built around your pace — not a pre-recorded playlist.</p>
+  </div>
+  <div class="formats-grid">
+    <div class="format-card reveal">
+      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop" alt="Student in 1-on-1 online session" loading="lazy"/>
+      <div class="format-overlay">
+        <h3>1-on-1 Personal Sessions</h3>
+        <p>Your tutor's full attention, tailored to your goals.</p>
+      </div>
+    </div>
+    <div class="format-card reveal">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&faces" alt="Group of students learning online together" loading="lazy"/>
+      <div class="format-overlay">
+        <h3>Small Group Classes</h3>
+        <p>Learn together with peers — interactive, collaborative, affordable.</p>
+      </div>
     </div>
   </div>
 </section>
