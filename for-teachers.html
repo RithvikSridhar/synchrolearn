@@ -97,7 +97,7 @@
     /* ── HERO ── */
     .hero {
       position: relative;
-      min-height: 680px;
+      min-height: 640px;
       display: flex;
       align-items: center;
       overflow: hidden;
@@ -139,12 +139,30 @@
     .btn-email:hover { background: var(--sky); color: white; transform: translateY(-2px); }
     .btn-email:hover svg { color: white; }
     .btn-email svg { color: var(--sky); transition: color 0.2s; }
-    .btn-outline-sky { background: transparent; color: var(--sky); border: 2px solid var(--sky); }
-    .btn-outline-sky:hover { background: var(--sky); color: white; transform: translateY(-2px); }
-    .hero-illustration { position: relative; display: flex; align-items: center; justify-content: center; height: 500px; }
-    .hero-photo-wrapper { position: relative; z-index: 2; border-radius: 32px; overflow: hidden; box-shadow: var(--shadow-lg); }
-    .hero-photo { width: 380px; height: 460px; object-fit: cover; display: block; border-radius: 32px; }
-    .photo-glow { position: absolute; inset: -20px; border-radius: 48px; background: radial-gradient(ellipse at center, rgba(212,240,95,0.25) 0%, rgba(92,181,242,0.15) 40%, transparent 70%); pointer-events: none; z-index: -1; }
+
+    /* Hero right: 3 teaching mode cards */
+    .hero-modes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .hero-mode-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+    .hero-mode-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-mode-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 12px 14px;
+      background: linear-gradient(to top, rgba(26,26,46,0.85) 0%, transparent 100%);
+    }
+    .hero-mode-overlay h4 { font-size: 11px; font-weight: 700; color: white; line-height: 1.3; }
 
     /* Abstract shapes */
     .shape-circle { position: absolute; border-radius: 50%; }
@@ -377,10 +395,18 @@
         </a>
       </div>
     </div>
-    <div class="hero-illustration">
-      <div class="hero-photo-wrapper">
-        <img src="https://images.unsplash.com/photo-1601412436009-d964bd02edbc?w=760&h=920&fit=crop&crop=faces" alt="Teacher conducting online class on laptop" class="hero-photo"/>
-        <div class="photo-glow"></div>
+    <div class="hero-modes">
+      <div class="hero-mode-card">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=350&fit=crop" alt="1-on-1 with child" loading="lazy"/>
+        <div class="hero-mode-overlay"><h4>1-on-1 with a Child</h4></div>
+      </div>
+      <div class="hero-mode-card">
+        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=350&fit=crop" alt="1-on-1 with adult" loading="lazy"/>
+        <div class="hero-mode-overlay"><h4>1-on-1 with an Adult</h4></div>
+      </div>
+      <div class="hero-mode-card">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=350&fit=crop" alt="Group class" loading="lazy"/>
+        <div class="hero-mode-overlay"><h4>Group of Adults</h4></div>
       </div>
     </div>
   </div>
