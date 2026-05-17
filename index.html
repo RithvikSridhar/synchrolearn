@@ -64,13 +64,29 @@
     .nav-logo-text { display: flex; flex-direction: column; line-height: 1.15; }
     .nav-logo-text .brand { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; color: var(--foreground); }
     .nav-logo-text .tagline { font-size: 9px; font-style: italic; color: var(--sky); font-weight: 500; letter-spacing: 0.3px; }
+html { scroll-behavior: smooth; }
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── FOCUS-VISIBLE ── */
+    :focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; border-radius: 4px; }
+
+    /* ── MOBILE NAV ── */
+    .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .mobile-toggle svg { width: 26px; height: 26px; color: var(--foreground-muted); }
     .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
     .nav-links a { color: var(--foreground-muted); text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: var(--radius-sm); transition: var(--transition); }
     .nav-links a:hover { color: var(--foreground); background: rgba(212, 240, 95, 0.12); }
     .nav-links a.active { color: var(--sky-dark); }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(250, 247, 242, 0.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 16px; box-shadow: var(--shadow-lg); z-index: 99; }
+      .mobile-toggle { display: block; }
+    }
     .nav-right { display: flex; align-items: center; gap: 12px; }
     .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: var(--radius-full); font-family: 'Source Sans 3', sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer; border: none; transition: var(--transition); white-space: nowrap; }
-    .btn-lime { background: var(--lime); color: var(--foreground); box-shadow: 0 4px 16px rgba(212, 240, 95, 0.28); }
+    .btn-lime { background: var(--lime); color: #1A2E0A; box-shadow: 0 4px 16px rgba(212, 240, 95, 0.28); }
     .btn-lime:hover { background: var(--lime-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212, 240, 95, 0.38); }
     .btn-whatsapp { background: var(--surface); color: var(--teal); border: 2px solid var(--teal); }
     .btn-whatsapp:hover { background: var(--teal); color: white; transform: translateY(-2px); }
@@ -373,15 +389,73 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── MOBILE ── */
+/* ── WHY SECTION ── */
+    .why-section { padding: 100px 64px; background: var(--bg-alt); }
+    .why-inner { max-width: 1100px; margin: 0 auto; }
+    .section-center { text-align: center; max-width: 600px; margin: 0 auto 60px; }
+    .section-center h2 { font-family: 'Fraunces', serif; font-size: clamp(26px, 3vw, 40px); font-weight: 700; color: var(--foreground); margin-bottom: 14px; }
+    .section-center p { font-size: 16px; color: var(--foreground-muted); line-height: 1.7; }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .why-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px 24px; text-align: center; transition: var(--transition); }
+    .why-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--border-strong); }
+    .why-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+    .why-icon svg { width: 26px; height: 26px; color: white; }
+    .why-icon.lime { background: linear-gradient(135deg, var(--lime), var(--lime-dark)); }
+    .why-icon.sky { background: linear-gradient(135deg, var(--sky), var(--sky-dark)); }
+    .why-card h3 { font-family: 'Source Sans 3', sans-serif; font-size: 16px; font-weight: 700; color: var(--foreground); margin-bottom: 8px; }
+    .why-card p { font-size: 13px; color: var(--foreground-muted); line-height: 1.65; }
+
+    /* ── STATS STRIP ── */
+    .stats-section-strip { padding: 80px 64px; background: var(--bg); }
+    .stats-strip-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-around; gap: 20px; }
+    .stat-strip { text-align: center; }
+    .stat-strip-num { font-family: 'Poppins', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; margin-bottom: 6px; }
+    .stat-strip-num.sky { color: var(--sky); }
+    .stat-strip-num.golden { color: var(--golden); }
+    .stat-strip-num.forest { color: var(--forest); }
+    .stat-strip-label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .stat-strip-divider { width: 1px; height: 56px; background: var(--border-strong); }
+
+    /* ── HOW SECTION STRIP ── */
+    .how-section-strip { padding: 100px 64px; background: var(--bg-alt); }
+    .how-inner { max-width: 900px; margin: 0 auto; }
+    .steps-strip { display: flex; align-items: flex-start; justify-content: center; gap: 0; margin-top: 60px; }
+    .step-strip { text-align: center; flex: 1; max-width: 240px; }
+    .step-strip-num { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--sky), var(--sky-dark)); color: white; font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; box-shadow: 0 6px 20px rgba(92,181,242,0.35); }
+    .step-strip h3 { font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; color: var(--foreground); margin-bottom: 8px; }
+    .step-strip p { font-size: 13px; color: var(--foreground-muted); line-height: 1.6; }
+    .step-strip-connector { flex-shrink: 0; width: 80px; height: 3px; background: linear-gradient(90deg, var(--sky), var(--lime)); border-radius: 2px; margin-top: 28px; }
+
+    /* ── CTA STRIP ── */
+    .cta-strip { padding: 100px 64px; background: radial-gradient(ellipse at center, rgba(92,181,242,0.08) 0%, transparent 60%); text-align: center; }
+    .cta-strip-inner { max-width: 600px; margin: 0 auto; }
+    .cta-strip h2 { font-family: 'Fraunces', serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; color: var(--foreground); margin-bottom: 14px; }
+    .cta-strip p { font-size: 16px; color: var(--foreground-muted); margin-bottom: 36px; line-height: 1.7; }
+    .cta-strip-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-outline-dark { background: transparent; color: var(--foreground); border: 2px solid var(--border-strong); }
+    .btn-outline-dark:hover { background: var(--foreground); color: white; transform: translateY(-2px); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(250, 247, 242, 0.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 16px; box-shadow: var(--shadow-lg); z-index: 99; }
+      .mobile-toggle { display: block; }
+    }
     @media (max-width: 900px) {
       nav { padding: 0 24px; }
-      .nav-links { display: none; }
       .hero-landing { grid-template-columns: 1fr; }
       .hero-left { padding: 60px 28px 48px; order: 2; }
       .hero-right { min-height: 340px; order: 1; }
       .hero-float-card { bottom: 20px; left: 20px; }
       .hero-headline { font-size: 32px; }
+      .why-section { padding: 60px 28px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .stats-section-strip { padding: 60px 28px; }
+      .stats-strip-inner { flex-direction: column; gap: 32px; }
+      .stat-strip-divider { width: 56px; height: 1px; }
+      .how-section-strip { padding: 60px 28px; }
+      .steps-strip { flex-direction: column; align-items: center; gap: 32px; }
+      .step-strip-connector { width: 3px; height: 40px; margin-top: 0; }
+      .cta-strip { padding: 60px 28px; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
       .footer-brand { grid-column: 1 / -1; }
       footer { padding: 48px 28px 24px; }
@@ -395,7 +469,7 @@
 <body>
 
 <!-- NAV -->
-<nav>
+<nav style="position:relative">
   <a href="index.html" class="nav-logo">
     <img src="logo.png" alt="SynchroLearn"/>
     <div class="nav-logo-text">
@@ -403,6 +477,9 @@
       <span class="tagline">Excel with a Live Guru</span>
     </div>
   </a>
+  <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+  </button>
   <ul class="nav-links">
     <li><a href="student.html">For Students</a></li>
     <li><a href="for-teachers.html">For Teachers</a></li>
@@ -491,6 +568,105 @@
   </div>
 </section>
 
+<!-- WHY SYNCHROLEARN -->
+<section class="why-section">
+  <div class="why-inner">
+    <div class="section-center reveal">
+      <h2>Why families choose SynchroLearn</h2>
+      <p>Live, personalised learning that adapts to your child — not the other way around.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon sky">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Vetted Expert Tutors</h3>
+        <p>Every tutor is personally verified — subject experts, great communicators, trained for online engagement.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.1s">
+        <div class="why-icon lime">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3>Flexible Scheduling</h3>
+        <p>Sessions 7 days a week, early morning to late evening. Reschedule with one tap, no questions asked.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.2s">
+        <div class="why-icon sky">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <h3>Curriculum That Fits You</h3>
+        <p>CBSE, ICSE, IB, GCSE, AP — or entirely custom. We build a plan around your goals, pace, and style.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section-strip">
+  <div class="stats-strip-inner reveal">
+    <div class="stat-strip">
+      <div class="stat-strip-num sky" data-target="500" data-suffix="+">0</div>
+      <div class="stat-strip-label">Expert Tutors</div>
+    </div>
+    <div class="stat-strip-divider"></div>
+    <div class="stat-strip">
+      <div class="stat-strip-num sky" data-target="1000" data-suffix="+">0</div>
+      <div class="stat-strip-label">Sessions Done</div>
+    </div>
+    <div class="stat-strip-divider"></div>
+    <div class="stat-strip">
+      <div class="stat-strip-num golden" data-target="4.9" data-suffix="/5" data-decimal="1">0</div>
+      <div class="stat-strip-label">Average Rating</div>
+    </div>
+    <div class="stat-strip-divider"></div>
+    <div class="stat-strip">
+      <div class="stat-strip-num forest" data-target="20" data-suffix="+">0</div>
+      <div class="stat-strip-label">Countries</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section-strip">
+  <div class="how-inner">
+    <div class="section-center reveal">
+      <h2>Get started in minutes</h2>
+      <p>No long forms, no contracts. Just book and start learning.</p>
+    </div>
+    <div class="steps-strip reveal">
+      <div class="step-strip">
+        <div class="step-strip-num">1</div>
+        <h3>Tell us your goals</h3>
+        <p>Subject, exam, skill — share what you're working toward.</p>
+      </div>
+      <div class="step-strip-connector"></div>
+      <div class="step-strip">
+        <div class="step-strip-num">2</div>
+        <h3>Get matched</h3>
+        <p>We pair you with the ideal tutor for your needs and schedule.</p>
+      </div>
+      <div class="step-strip-connector"></div>
+      <div class="step-strip">
+        <div class="step-strip-num">3</div>
+        <h3>Start learning live</h3>
+        <p>Face-to-face video, whiteboard, screen share — like being in the same room.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="cta-strip">
+  <div class="cta-strip-inner reveal">
+    <h2>Ready to excel?</h2>
+    <p>Join 500+ students already learning with their perfect tutor.</p>
+    <div class="cta-strip-actions">
+      <a href="student.html" class="btn btn-lime">Find a Tutor</a>
+      <a href="for-teachers.html" class="btn btn-outline-dark">Teach with Us</a>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
@@ -532,9 +708,45 @@
         <li><a href="https://wa.me/919791018666" target="_blank" rel="noopener">WhatsApp</a></li>
       </ul>
     </div>
-  </div>
+</div>
   <div class="footer-bottom">© 2026 SynchroLearn. Excel with a Live Guru.</div>
 </footer>
+
+<script>
+(function() {
+  // ── Scroll reveal ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Counter animation ──
+  function animateCounter(el) {
+    const target = parseFloat(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const isDecimal = el.dataset.decimal === '1';
+    const duration = 1600;
+    const start = performance.now();
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = target * eased;
+      el.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current).toLocaleString()) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { animateCounter(entry.target); counterObserver.unobserve(entry.target); }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-strip-num[data-target]').forEach(el => counterObserver.observe(el));
+})();
+</script>
 
 </body>
 </html>

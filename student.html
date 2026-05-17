@@ -75,7 +75,7 @@
     .nav-links a.active { color: var(--sky-dark); }
     .nav-right { display: flex; align-items: center; gap: 12px; }
     .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: var(--radius-full); font-family: 'Source Sans 3', sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer; border: none; transition: var(--transition); white-space: nowrap; }
-    .btn-lime { background: var(--lime); color: var(--foreground); box-shadow: 0 4px 16px rgba(212, 240, 95, 0.28); }
+    .btn-lime { background: var(--lime); color: #1A2E0A; box-shadow: 0 4px 16px rgba(212, 240, 95, 0.28); }
     .btn-lime:hover { background: var(--lime-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212, 240, 95, 0.38); }
     .btn-whatsapp { background: var(--surface); color: var(--teal); border: 2px solid var(--teal); }
     .btn-whatsapp:hover { background: var(--teal); color: white; transform: translateY(-2px); }
@@ -358,7 +358,17 @@
     .footer-col a:hover { color: var(--sky-dark); }
     .footer-bottom { text-align: center; padding-top: 32px; margin-top: 40px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; max-width: 1100px; margin-left: auto; margin-right: auto; }
 
-    /* ── MOBILE ── */
+/* ── FOCUS-VISIBLE ── */
+    :focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; border-radius: 4px; }
+
+    /* ── MOBILE NAV ── */
+    .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .mobile-toggle svg { width: 26px; height: 26px; color: var(--foreground-muted); }
+@media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(250, 247, 242, 0.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 16px; box-shadow: var(--shadow-lg); z-index: 99; }
+      .mobile-toggle { display: block; }
+    }
     @media (max-width: 900px) {
       nav { padding: 0 24px; }
       .nav-links { display: none; }
@@ -384,7 +394,7 @@
 <body>
 
 <!-- NAV -->
-<nav>
+<nav style="position:relative">
   <a href="index.html" class="nav-logo">
     <img src="logo.png" alt="SynchroLearn"/>
     <div class="nav-logo-text">
@@ -392,6 +402,9 @@
       <span class="tagline">Excel with a Live Guru</span>
     </div>
   </a>
+  <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+  </button>
   <ul class="nav-links">
     <li><a href="student.html" class="active">For Students</a></li>
     <li><a href="for-teachers.html">For Teachers</a></li>
@@ -436,22 +449,22 @@
   <div class="stats-grid">
     <div class="stat-card reveal">
       <div class="stat-icon lime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
-      <div class="stat-number">500+</div>
+      <div class="stat-number" data-target="500" data-suffix="+" style="color: var(--sky);">500+</div>
       <div class="stat-label">Expert Tutors</div>
     </div>
     <div class="stat-card reveal">
       <div class="stat-icon sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-      <div class="stat-number">1000+</div>
+      <div class="stat-number" data-target="1000" data-suffix="+" style="color: var(--sky);">1000+</div>
       <div class="stat-label">Sessions Completed</div>
     </div>
     <div class="stat-card rating-card reveal">
       <div class="stat-icon golden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-      <div class="stat-number golden">4.9/5</div>
+      <div class="stat-number golden" data-target="4.9" data-suffix="/5" data-decimal="1" data-prefix="">4.9/5</div>
       <div class="stat-label">Average Rating</div>
     </div>
     <div class="stat-card reveal">
       <div class="stat-icon forest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg></div>
-      <div class="stat-number forest">20+</div>
+      <div class="stat-number forest" data-target="20" data-suffix="+" style="color: var(--forest);">20+</div>
       <div class="stat-label">Countries</div>
     </div>
   </div>
@@ -654,12 +667,43 @@
 
 <script>
 (function() {
+  // ── Scroll reveal ──
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Counter animation ──
+  function animateCounter(el) {
+    const target = parseFloat(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    const isDecimal = el.dataset.decimal === '1';
+    const duration = 1600;
+    const start = performance.now();
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = target * eased;
+      el.textContent = prefix + (isDecimal ? current.toFixed(1) : Math.floor(current).toLocaleString()) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.stat-number[data-target]').forEach(el => counterObserver.observe(el));
 })();
 </script>
 
