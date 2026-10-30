@@ -43,3 +43,32 @@ body:not(.sr-home) .cta-section{background:var(--sr-navy)!important}
 @media(max-width:1050px){.sr-links{gap:15px}.sr-hero-grid{gap:8px}.sr-subject-grid{grid-template-columns:repeat(2,1fr)}.sr-story-grid{gap:40px}}
 @media(max-width:760px){.sr-nav{height:72px}.sr-nav-toggle{display:block}.sr-nav .sr-btn{display:none}.sr-links{position:absolute;top:72px;left:-5.5%;right:-5.5%;display:none;flex-direction:column;gap:0;align-items:stretch;background:white;padding:12px 6% 22px;box-shadow:0 15px 25px #00488615}.sr-links.is-open{display:flex}.sr-links a{padding:13px 0;border-bottom:1px solid var(--sr-border)}.sr-hero-grid{grid-template-columns:1fr;padding:55px 0 25px}.sr-hero-copy>p{font-size:15px}.sr-hero-art{height:430px;min-height:430px;max-width:580px;width:100%;margin:0 auto}.sr-hero-photo{inset:48px 14% 17px}.sr-hero-backdrop{inset:16px 12% 3px}.sr-sticker--top{right:5%}.sr-sticker--bottom{left:5%}.sr-section{padding:70px 0}.sr-heading-row{display:block}.sr-heading-row>p{margin-top:15px}.sr-story-grid,.sr-teacher-grid,.sr-faq-grid{grid-template-columns:1fr;gap:36px}.sr-photo-scene{min-height:415px}.sr-photo-scene>img{width:93%}.sr-scene-card{right:0}.sr-experience-grid{grid-template-columns:1fr}.sr-steps{grid-template-columns:1fr}.sr-step{min-height:auto}.sr-teacher img{height:330px}.sr-footer-grid{flex-wrap:wrap}}
 @media(max-width:460px){.sr-container{width:88%}.sr-brand img{width:49px;height:49px}.sr-brand strong{font-size:18px}.sr-hero h1{font-size:clamp(39px,10.2vw,54px)}.sr-hero-art{min-height:365px;height:365px}.sr-sticker{font-size:10px;padding:9px 11px}.sr-sticker svg{width:23px;height:23px}.sr-sticker--mid{top:41%}.sr-hero-note{margin-top:20px}.sr-subject-grid{gap:11px}.sr-subject{min-height:245px;padding:17px;border-radius:22px}.sr-subject .sr-art{height:89px;width:94px}.sr-subject .sr-art svg{height:88px;width:88px}.sr-subject strong{font-size:15px}.sr-subject small{font-size:11px}.sr-subject .sr-card-arrow{right:13px;bottom:13px;width:28px;height:28px;font-size:16px}.sr-scene-card{padding:13px 16px;max-width:170px}.sr-scene-card strong{font-size:21px}.sr-intro-flex{align-items:start}.sr-intro-points{gap:9px}.sr-intro-points span{font-size:11px}.sr-footer-grid{display:grid;gap:30px}}
+
+
+/* Three audience pathways. Calm, editorial typography with playful bespoke illustration. */
+.sr-audiences{padding:92px 0 98px;background:#fff}
+.sr-audience-heading{display:flex;align-items:end;justify-content:space-between;gap:35px;margin-bottom:34px}
+.sr-audience-heading h2{font-size:clamp(32px,4.1vw,57px);letter-spacing:-.055em;line-height:1.12;color:var(--sr-navy);margin-top:15px}
+.sr-audience-heading h2 em{font-style:normal;color:var(--sr-blue)}
+.sr-audience-heading p{max-width:295px;color:#69829b;font-size:15px;line-height:1.7}
+.sr-persona-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.sr-persona{display:flex;position:relative;flex-direction:column;min-height:425px;padding:26px;border-radius:32px;color:var(--sr-navy);border:1px solid rgba(0,72,134,.08);transition:transform .25s,box-shadow .25s;overflow:hidden}
+.sr-persona:hover{transform:translateY(-6px);box-shadow:0 24px 38px #0048861c}
+.sr-persona--student{background:#DFF3FF}.sr-persona--corporate{background:#E9E9FC}.sr-persona--teacher{background:#FFF0C9}
+.sr-persona-eyebrow{font-size:11px;font-weight:800;color:#426a86;letter-spacing:1.05px}
+.sr-persona-illustration{height:142px;display:grid;place-items:center;position:relative}
+.sr-persona-illustration:before{content:'';position:absolute;width:124px;height:124px;background:#ffffff91;border-radius:43% 57% 52% 48%;transform:rotate(-17deg)}
+.sr-persona-illustration svg{height:121px;width:121px;position:relative;filter:drop-shadow(0 10px 0 #0048860b)}
+.sr-persona-content{display:flex;flex-direction:column;flex:1}.sr-persona h3{font-size:clamp(22px,2.1vw,30px);letter-spacing:-.05em;line-height:1.2;margin-bottom:12px;color:var(--sr-navy)}
+.sr-persona h3 span{color:var(--sr-blue)}.sr-persona p{font-size:13px;line-height:1.75;color:#52728D;min-height:66px}
+.sr-persona-chips{display:flex;gap:7px;flex-wrap:wrap;margin:16px 0 20px}.sr-persona-chips span{font-size:10px;border:1px solid #ffffffed;background:#ffffff88;color:#496b88;padding:7px 9px;border-radius:30px;font-weight:700}
+.sr-persona-content>strong{display:flex;justify-content:space-between;align-items:center;margin-top:auto;border-top:1px solid #00488622;padding-top:16px;font-size:13px;gap:9px}
+.sr-persona-content>strong b{font-size:19px;font-weight:500}
+.sr-corporate-feature{background:#F3F8FF}.sr-corporate-layout{display:grid;grid-template-columns:.95fr 1.05fr;align-items:center;gap:70px}
+.sr-corporate-visual{position:relative;min-height:380px}.sr-corporate-visual img{width:96%;height:380px;object-fit:cover;border-radius:46px 140px 46px 46px}
+.sr-corporate-note{position:absolute;right:0;bottom:22px;padding:15px 18px;max-width:205px;display:flex;gap:9px;background:#FFF0BA;border:7px solid #fff;border-radius:24px;transform:rotate(4deg);color:var(--sr-navy);font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;line-height:1.35;box-shadow:0 10px 30px #0048861c}.sr-corporate-note span{color:var(--sr-blue)}
+.sr-corporate-copy h2{font-size:clamp(32px,4.1vw,57px);color:var(--sr-navy);line-height:1.15;letter-spacing:-.055em;margin:15px 0}
+.sr-corporate-copy h2 em{font-style:normal;color:var(--sr-blue)}.sr-corporate-copy p{font-size:16px;line-height:1.85;color:#617c98;max-width:490px;margin-bottom:24px}
+.sr-teacher-actions{display:flex;flex-wrap:wrap;gap:19px;align-items:center}.sr-teacher-upskill{color:#fff;text-underline-offset:5px;text-decoration:underline!important;font-weight:700;font-size:14px}
+@media(max-width:1000px){.sr-persona{padding:21px}.sr-persona h3{font-size:23px}.sr-corporate-layout{gap:35px}}
+@media(max-width:760px){.sr-audiences{padding:67px 0}.sr-audience-heading{display:block}.sr-audience-heading p{margin-top:16px}.sr-persona-grid{grid-template-columns:1fr;gap:14px}.sr-persona{min-height:0;padding:23px;border-radius:25px}.sr-persona-illustration{height:108px;justify-content:start}.sr-persona-illustration svg{height:98px;width:98px}.sr-persona-illustration:before{height:105px;width:105px}.sr-persona p{min-height:0}.sr-corporate-layout{grid-template-columns:1fr;gap:30px}.sr-corporate-visual,.sr-corporate-visual img{height:280px;min-height:280px}}
